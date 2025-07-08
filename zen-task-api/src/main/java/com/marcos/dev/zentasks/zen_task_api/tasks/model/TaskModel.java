@@ -1,6 +1,8 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
+import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import jakarta.persistence.*;
+import org.apache.catalina.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,6 +40,10 @@ public class TaskModel {
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserModel user;
+
     public TaskModel() {
     }
 
@@ -58,6 +64,10 @@ public class TaskModel {
 
     public Long getId() {
         return id;
+    }
+
+    public UserModel getUser() {
+        return user;
     }
 
     public String getTitle() {
@@ -129,6 +139,6 @@ public class TaskModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, dueDate, isUrgent, isImportant, isCompleted, createdAt, completedAt);
+        return getClass().hashCode();
     }
 }
