@@ -1,4 +1,4 @@
-databaseChangelog:
+databaseChangeLog:
   - include:
       file: db/changelog/changeset/create-table-users.yml
   - include:

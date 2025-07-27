@@ -1,0 +1,40 @@
+# Arquivos e pastas do Git
+.git
+.gitignore
+
+# Pastas de build geradas pelo Maven ou Gradle
+target/
+build/
+
+# Wrappers do Maven e Gradle (não são necessários dentro da imagem)
+.mvn/
+mvnw
+mvnw.cmd
+.gradle/
+gradlew
+gradlew.bat
+
+# Arquivos de configuração de IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Arquivos de log gerados localmente
+*.log
+logs/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração do Docker (não precisam estar na imagem)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Documentação que não é necessária para a execução
+README.md
+HELP.md

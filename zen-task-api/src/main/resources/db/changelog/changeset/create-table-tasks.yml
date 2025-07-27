@@ -57,7 +57,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: user_id
-                  type: bigint
+                  type: uuid
                   constraints:
                     nullable: false
                     foreignKeyName: fk_tasks_users
