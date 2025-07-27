@@ -13,6 +13,8 @@ spring:
   profiles:
     active:
       - dev
+  liquibase:
+    enabled: false
 
   jpa:
     open-in-view: false

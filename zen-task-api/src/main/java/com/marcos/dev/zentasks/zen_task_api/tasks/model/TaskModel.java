@@ -19,7 +19,7 @@ public class TaskModel {
     @Column(name = "title", nullable = false, length = 150)
     private String title;
 
-    @Column(name = "description", length = 500, nullable = false)
+    @Column(name = "description", length = 2500, nullable = false)
     private String description;
 
     @Column(name = "due_date")
