@@ -2,7 +2,6 @@ package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import jakarta.persistence.*;
-import org.apache.catalina.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
