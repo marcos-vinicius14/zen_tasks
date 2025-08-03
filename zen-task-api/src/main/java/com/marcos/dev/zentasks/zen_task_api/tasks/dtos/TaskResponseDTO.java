@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record TaskResponseDTO(
-        String title,
+        Long id, String title,
         String description,
         LocalDate dueDate,
         boolean isUrgent,

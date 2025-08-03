@@ -6,8 +6,6 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 public record UpdateTaskDTO(
-        // Se o título for enviado, ele deve ter entre 3 e 300 caracteres.
-        // Se for nulo, a validação é ignorada.
         @Size(min = 3, max = 300, message = "O título deve ter entre 3 e 300 caracteres.")
         String title,
 
