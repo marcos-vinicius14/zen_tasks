@@ -33,6 +33,16 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Handles exceptions of type BusinnesRuleException and transforms them into an HTTP response
+     * with a standardized error body. This method is triggered whenever a BusinnesRuleException
+     * is thrown in the application context.
+     *
+     * @param ex the BusinnesRuleException instance that was thrown
+     * @return a ResponseEntity containing an ErrorResponseDTO with HTTP status 400 (BAD_REQUEST)
+     *         and details about the business rule violation
+     */
+
     @ExceptionHandler(BusinnesRuleException.class)
     public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinnesRuleException ex) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
@@ -47,6 +57,15 @@ public class RestExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Handles exceptions of type DataConflictException and converts them into an HTTP response
+     * with a standardized error body. This method is triggered whenever a DataConflictException
+     * is thrown in the application context.
+     *
+     * @param ex the DataConflictException instance that was thrown
+     * @return a ResponseEntity containing an ErrorResponseDTO with HTTP status 409 (CONFLICT)
+     *         and details about the conflict
+     */
     @ExceptionHandler(DataConflictException.class)
     public ResponseEntity<ErrorResponseDTO> handlerDataConflictException(DataConflictException ex) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
@@ -59,5 +78,19 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(
                 errorResponseDTO,
                 HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ForbiddenAccessException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerForbiddenAccessException(ForbiddenAccessException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.FORBIDDEN.value(),
+                "Acesso negado!",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.FORBIDDEN);
     }
 }
