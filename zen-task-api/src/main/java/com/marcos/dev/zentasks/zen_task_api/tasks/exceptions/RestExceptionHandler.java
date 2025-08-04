@@ -32,4 +32,18 @@ public class RestExceptionHandler {
 
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(BusinnesRuleException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinnesRuleException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Regra de negocio invalida",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.BAD_REQUEST);
+    }
 }
