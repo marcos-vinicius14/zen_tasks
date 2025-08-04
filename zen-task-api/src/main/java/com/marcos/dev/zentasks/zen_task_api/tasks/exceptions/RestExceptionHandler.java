@@ -80,6 +80,16 @@ public class RestExceptionHandler {
                 HttpStatus.CONFLICT);
     }
 
+    /**
+     * Handles exceptions of type ForbiddenAccessException and transforms them into an HTTP response
+     * with a standardized error body. This method is triggered whenever a ForbiddenAccessException
+     * is thrown in the application context.
+     *
+     * @param ex the ForbiddenAccessException instance that was thrown
+     * @return a ResponseEntity containing an ErrorResponseDTO with HTTP status 403 (FORBIDDEN)
+     *         and details about the forbidden access attempt
+     */
+
     @ExceptionHandler(ForbiddenAccessException.class)
     public ResponseEntity<ErrorResponseDTO> handlerForbiddenAccessException(ForbiddenAccessException ex) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
@@ -92,5 +102,44 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(
                 errorResponseDTO,
                 HttpStatus.FORBIDDEN);
+    }
+
+    /**
+     * Handles exceptions of type InvalidInputException and transforms them into an HTTP response
+     * with a standardized error body. This method is triggered whenever an InvalidInputException
+     * is thrown in the application context.
+     *
+     * @param ex the InvalidInputException instance that was thrown
+     * @return a ResponseEntity containing an ErrorResponseDTO with HTTP status 400 (BAD_REQUEST)
+     *         and details about the invalid input
+     */
+    @ExceptionHandler(InvalidInputException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerInvalidInputException(InvalidInputException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Dados invalidos",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerBadRequestException(BadRequestException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Dados invalidos",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.BAD_REQUEST
+        );
     }
 }
