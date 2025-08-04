@@ -111,7 +111,6 @@ public class TaskMapper {
             return;
         }
 
-        // A ordem das chamadas é crucial para a lógica funcionar corretamente.
         updateCompletionTimestamp(entity, newCompletionStatus);
         updateTaskCompletionState(entity, newCompletionStatus);
     }
