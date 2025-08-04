@@ -46,4 +46,18 @@ public class RestExceptionHandler {
                 errorResponseDTO,
                 HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(DataConflictException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerDataConflictException(DataConflictException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.CONFLICT.value(),
+                "Recurso ja existe!",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.CONFLICT);
+    }
 }
