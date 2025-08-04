@@ -2,7 +2,6 @@ package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import jakarta.persistence.*;
-import org.apache.catalina.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,7 +46,7 @@ public class TaskModel {
     public TaskModel() {
     }
 
-    public TaskModel(String title, String description, LocalDate dueDate, boolean isUrgent, boolean isImportant, boolean isCompleted, LocalDateTime completedAt) {
+    public TaskModel(String title, String description, LocalDate dueDate, boolean isUrgent, boolean isImportant, boolean isCompleted, LocalDateTime completedAt, LocalDateTime createdAt) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -55,6 +54,7 @@ public class TaskModel {
         this.isImportant = isImportant;
         this.isCompleted = isCompleted;
         this.completedAt = completedAt;
+        this.createdAt = createdAt;
     }
 
     @PrePersist
@@ -128,6 +128,10 @@ public class TaskModel {
 
     public void setCompletedAt(LocalDateTime completedAt) {
         this.completedAt = completedAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
