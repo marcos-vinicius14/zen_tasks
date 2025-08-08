@@ -1,10 +1,12 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.repository;
 
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import jakarta.persistence.criteria.Predicate;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +17,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Repository
 public interface TaskRepository extends JpaRepository<TaskModel, Long>, JpaSpecificationExecutor<TaskModel> {
@@ -30,9 +31,9 @@ public interface TaskRepository extends JpaRepository<TaskModel, Long>, JpaSpeci
             return new SpecificationBuilder();
         }
 
-public static class SpecificationBuilder {
-    private final AtomicReference<UserModel> user = new AtomicReference<>();
-    private final AtomicReference<TaskStatus> status = new AtomicReference<>();
+        public static class SpecificationBuilder {
+            private UserModel user;
+            private TaskStatus status;
             private Quadrant quadrant;
             private Boolean completed;
             private LocalDate dueDateFrom;
@@ -44,14 +45,14 @@ public static class SpecificationBuilder {
 
             public SpecificationBuilder forUser(UserModel user) {
                 if (user == null) {
-                    throw new IllegalArgumentException("O usuário não pode ser nulo");
+                    throw new BusinessRuleException("O usuário não pode ser nulo");
                 }
-                this.user.set(user);
+                this.user = user;
                 return this;
             }
 
             public SpecificationBuilder withStatus(TaskStatus status) {
-                this.status.set(status);
+                this.status = status;
                 return this;
             }
 
@@ -81,10 +82,10 @@ public static class SpecificationBuilder {
                 return this;
             }
 
-            public org.springframework.data.jpa.domain.Specification<TaskModel> build() {
+            public Specification<TaskModel> build() {
                 return (root, query, cb) -> {
-                    ArrayList<Predicate> predicates = new ArrayList<>();
-    
+                    List<Predicate> predicates = new ArrayList<>();
+
                     if (user != null) {
                         predicates.add(cb.equal(root.get("user"), user));
                     }
@@ -98,6 +99,7 @@ public static class SpecificationBuilder {
                     }
 
                     if (completed != null) {
+                        // O nome do campo na entidade é "completed", não "isCompleted"
                         predicates.add(cb.equal(root.get("isCompleted"), completed));
                     }
 
@@ -132,10 +134,5 @@ public static class SpecificationBuilder {
     @Query("SELECT COUNT(t) FROM TaskModel t WHERE t.user = :user AND t.isCompleted = false")
     long countIncompleteTasksByUser(@Param("user") UserModel user);
 
-    @Query("SELECT t FROM TaskModel t WHERE t.user = :user AND t.dueDate <= :date AND t.isCompleted = false")
-    List<TaskModel> findOverdueTasks(@Param("user") UserModel user, @Param("date") LocalDate date);
 
-    default List<TaskModel> findTasksBySpecification(Specifications.SpecificationBuilder specBuilder) {
-        return findAll(specBuilder.build());
-    }
 }
