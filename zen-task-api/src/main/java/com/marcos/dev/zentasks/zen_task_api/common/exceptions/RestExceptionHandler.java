@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
+package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;

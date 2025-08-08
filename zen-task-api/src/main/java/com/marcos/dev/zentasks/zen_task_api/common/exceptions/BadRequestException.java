@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
+package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 /**
  * This exception is thrown to indicate that a bad request has been made to the application.

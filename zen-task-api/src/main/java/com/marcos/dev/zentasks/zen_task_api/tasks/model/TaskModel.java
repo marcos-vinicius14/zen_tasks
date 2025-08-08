@@ -1,5 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinnesRuleException;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
@@ -57,6 +58,14 @@ public class TaskModel {
     }
 
     public TaskModel(String title, String description, LocalDate dueDate, boolean isUrgent, boolean isImportant, boolean isCompleted, LocalDateTime completedAt, LocalDateTime createdAt) {
+       if (title == null || title.isBlank()) {
+           throw new BusinnesRuleException("A tarefa deve ter um titulo!");
+       }
+
+       if (description == null || description.isBlank()) {
+           throw new BusinnesRuleException("A tarefa deve conter uma descricao");
+       }
+
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -66,6 +75,40 @@ public class TaskModel {
         this.completedAt = completedAt;
         this.createdAt = createdAt;
     }
+
+    public void definePriorite(boolean isUrgent, boolean isImportant) {
+        validatePriorityDefinion();
+
+        if(isUrgent && isImportant) {
+            assignQuadrant(Quadrant.DO_NOW);
+            return;
+        }
+
+        if (!isUrgent && isImportant) {
+            assignQuadrant(Quadrant.SCHEDULE);
+            return;
+        }
+
+        if (isUrgent && !isImportant) {
+            assignQuadrant(Quadrant.DELEGATE);
+            return;
+        }
+
+        assignQuadrant(Quadrant.ELIMINATE);
+    }
+
+    private void validatePriorityDefinion() {
+        if (isCompleted) {
+            throw new BusinnesRuleException("Não é possível alterar a prioridade de uma tarefa completada");
+        }
+    }
+
+    private void assignQuadrant(Quadrant newQuadrant) {
+        this.quadrant = newQuadrant;
+        this.isUrgent = newQuadrant == Quadrant.DO_NOW || newQuadrant == Quadrant.DELEGATE;
+        this.isImportant = newQuadrant == Quadrant.DO_NOW || newQuadrant == Quadrant.SCHEDULE;
+    }
+
 
     @PrePersist
     protected void onCreate() {
