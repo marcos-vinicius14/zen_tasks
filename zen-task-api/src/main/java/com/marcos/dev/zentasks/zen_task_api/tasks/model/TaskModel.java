@@ -1,5 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
+import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
+import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import jakarta.persistence.*;
 
@@ -32,6 +34,14 @@ public class TaskModel {
 
     @Column(name = "is_completed")
     private boolean isCompleted;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
+    private TaskStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "quadrant", nullable = false, length = 20)
+    private Quadrant quadrant;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
