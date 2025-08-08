@@ -43,8 +43,8 @@ public class RestExceptionHandler {
      *         and details about the business rule violation
      */
 
-    @ExceptionHandler(BusinnesRuleException.class)
-    public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinnesRuleException ex) {
+    @ExceptionHandler(BusinessRuleException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinessRuleException ex) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),
                 "Regra de negocio invalida",
