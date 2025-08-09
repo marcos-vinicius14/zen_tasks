@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
+package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
@@ -43,8 +43,8 @@ public class RestExceptionHandler {
      *         and details about the business rule violation
      */
 
-    @ExceptionHandler(BusinnesRuleException.class)
-    public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinnesRuleException ex) {
+    @ExceptionHandler(BusinessRuleException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerBusinnesRuleException(BusinessRuleException ex) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
                 HttpStatus.BAD_REQUEST.value(),
                 "Regra de negocio invalida",

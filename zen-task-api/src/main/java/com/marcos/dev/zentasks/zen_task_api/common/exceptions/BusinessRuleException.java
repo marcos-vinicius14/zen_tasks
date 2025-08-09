@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
+package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 /**
  * This exception is thrown when a business rule violation occurs within the application.
@@ -13,12 +13,12 @@ package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
  * about the business rule that was violated.
  */
 
-public class BusinnesRuleException extends RuntimeException{
-    public BusinnesRuleException(String message) {
+public class BusinessRuleException extends RuntimeException{
+    public BusinessRuleException(String message) {
         super(message);
     }
 
-    public BusinnesRuleException(String message, Throwable cause) {
+    public BusinessRuleException(String message, Throwable cause) {
         super(message, cause);
     }
 }

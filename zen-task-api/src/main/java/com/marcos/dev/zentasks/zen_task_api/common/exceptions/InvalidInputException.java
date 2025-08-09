@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.tasks.exceptions;
+package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 public class InvalidInputException extends RuntimeException {
     public InvalidInputException(String message) {
