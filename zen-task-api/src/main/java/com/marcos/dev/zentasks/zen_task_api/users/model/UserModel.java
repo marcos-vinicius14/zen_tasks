@@ -100,11 +100,6 @@ public class UserModel implements UserDetails {
         return UserDetails.super.isCredentialsNonExpired();
     }
 
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
-
     public String getEmail() {
         return email;
     }
