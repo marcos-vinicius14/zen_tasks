@@ -19,7 +19,7 @@ public class UserModel implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", nullable = false, length = 50, unique = true, updatable = false)
     private String username;
 
     @Column(name = "email", nullable = false, unique = true, length = 254)
