@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: marcos_vinicius
+      changes:
+        - addColumn:
+            tableName: tb_tasks
+            columns:
+              - column:
+                  name: task_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                  defaultValue: 'CREATED'
+              - column:
+                  name: quadrant
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+                  defaultValue: 'DO_NOW'
+
+        - sql:
+            sql: ALTER TABLE tb_tasks ADD CONSTRAINT chk_task_status CHECK (task_status IN ('CREATED', 'IN_PROGRESS', 'DONE', 'CLOSED', 'CANCELED'))
+
+        - sql:
+            sql: ALTER TABLE tb_tasks ADD CONSTRAINT chk_quadrant CHECK (quadrant IN ('DO_NOW', 'SCHEDULE', 'DELEGATE', 'ELIMINATE'))

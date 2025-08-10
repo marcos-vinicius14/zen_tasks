@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/changeset/create-table-users.yml
   - include:
       file: db/changelog/changeset/create-table-tasks.yml
+  - include:
+      file: db/changelog/changeset/add-column-email-in-tb_users.yml
+  - include:
+      file: db/changelog/changeset/add-task-status-and-quadrant-in-tb_tasks.yml
