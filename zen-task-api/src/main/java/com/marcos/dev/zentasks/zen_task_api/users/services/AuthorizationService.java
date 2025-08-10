@@ -3,7 +3,6 @@ package com.marcos.dev.zentasks.zen_task_api.users.services;
 import com.marcos.dev.zentasks.zen_task_api.users.repository.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,7 +31,6 @@ public class AuthorizationService implements UserDetailsService {
      * @throws UsernameNotFoundException Se o usuário não for encontrado
      */
     @Override
-    @Cacheable("userDetails")
     public UserDetails loadUserByUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             log.warn("Tentativa de autenticação com username vazio");
