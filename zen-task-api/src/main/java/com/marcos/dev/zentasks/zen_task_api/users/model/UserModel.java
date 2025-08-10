@@ -1,11 +1,13 @@
 package com.marcos.dev.zentasks.zen_task_api.users.model;
 
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.users.enums.UserRole;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -45,11 +47,15 @@ public class UserModel implements UserDetails {
     public UserModel() {
     }
 
-    public UserModel(String username, String email, String passwordHash) {
+    public UserModel(String username, String email, String password, UserRole role) {
+        this.id = null;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.role = role;
     }
+
+
 
     @PrePersist
     protected void onCreate() {
@@ -60,6 +66,67 @@ public class UserModel implements UserDetails {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+
+    private static void validateUsername(String username) {
+        if (username == null || username.isBlank()) {
+            throw new InvalidInputException("Username cannot be null or empty");
+        }
+    }
+
+    private static void validateEmail(String email) {
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            throw new InvalidInputException("Invalid email format");
+        }
+    }
+
+    private static void validatePassword(String password) {
+        if (password == null || password.length() < 8) {
+            throw new InvalidInputException("Password must be at least 8 characters long");
+        }
+    }
+
+
+   public void changePassword(String currentPassword, String newPassword) {
+        validatePassword(newPassword);
+
+        if (!new BCryptPasswordEncoder().matches(currentPassword, this.passwordHash)) {
+            throw new InvalidInputException("Current password is incorrect");
+        }
+
+        this.passwordHash = new BCryptPasswordEncoder().encode(newPassword);
+    }
+
+    public void updateEmail(String newEmail) {
+        validateEmail(newEmail);
+        this.email = newEmail;
+    }
+
+    public void updateUsername(String newUsername) {
+        validateUsername(newUsername);
+        this.username = newUsername;
+    }
+
+    public void updateRole(UserRole newRole) {
+        this.role = newRole;
+    }
+
+    public boolean authenticate(String password) {
+        return new BCryptPasswordEncoder().matches(password, this.passwordHash);
+    }
+
+    public void  addTask(TaskModel task) {
+        this.tasks.add(task);
+    }
+
+    public void removeTask(TaskModel task) {
+        this.tasks.remove(task);
+    }
+
+    public void removeAllTasks() {
+        this.tasks.clear();
+    }
+
 
 
     public UUID getId() {
@@ -84,11 +151,9 @@ public class UserModel implements UserDetails {
         return ROLE_PREFIX + role.getRole().toUpperCase();
     }
 
-
-
     @Override
     public String getPassword() {
-        return "";
+        return passwordHash;
     }
 
     public String getUsername() {
@@ -108,20 +173,16 @@ public class UserModel implements UserDetails {
         return passwordHash;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public UserRole getRole() {
+        return role;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public void setTasks(Set<TaskModel> tasks) {
-        this.tasks = tasks;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     @Override
