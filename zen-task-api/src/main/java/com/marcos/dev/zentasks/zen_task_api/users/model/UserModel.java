@@ -1,8 +1,10 @@
 package com.marcos.dev.zentasks.zen_task_api.users.model;
 
 import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
+import com.marcos.dev.zentasks.zen_task_api.users.enums.UserRole;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
@@ -11,6 +13,8 @@ import java.util.*;
 @Entity
 @Table(name = "tb_users")
 public class UserModel implements UserDetails {
+    private static final String ROLE_PREFIX = "ROLE_";
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -23,6 +27,10 @@ public class UserModel implements UserDetails {
 
     @Column(name = "password_hash", nullable = false, length = 250)
     private String passwordHash;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 20)
+    private UserRole role;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -64,8 +72,19 @@ public class UserModel implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(createGrantedAuthority(this.role));
     }
+
+
+    private GrantedAuthority createGrantedAuthority(UserRole role) {
+        return new SimpleGrantedAuthority(formatRoleName(role));
+    }
+
+    private String formatRoleName(UserRole role) {
+        return ROLE_PREFIX + role.getRole().toUpperCase();
+    }
+
+
 
     @Override
     public String getPassword() {
@@ -74,16 +93,6 @@ public class UserModel implements UserDetails {
 
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
     }
 
     @Override
