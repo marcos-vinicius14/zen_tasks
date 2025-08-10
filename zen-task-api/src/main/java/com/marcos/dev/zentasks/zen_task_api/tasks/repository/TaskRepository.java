@@ -99,7 +99,6 @@ public interface TaskRepository extends JpaRepository<TaskModel, Long>, JpaSpeci
                     }
 
                     if (completed != null) {
-                        // O nome do campo na entidade é "completed", não "isCompleted"
                         predicates.add(cb.equal(root.get("isCompleted"), completed));
                     }
 
