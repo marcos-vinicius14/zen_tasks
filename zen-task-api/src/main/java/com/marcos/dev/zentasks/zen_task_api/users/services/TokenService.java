@@ -41,7 +41,7 @@ public class TokenService {
                     .sign(algorithm);
 
         } catch (JWTCreationException exception) {
-            throw new TokenGenerationException("Error while generating token", exception);
+            throw new TokenGenerationException("Erro ao gerar o token", exception);
         }
     }
 
@@ -56,7 +56,7 @@ public class TokenService {
                     .getSubject();
 
         } catch (JWTVerificationException exception) {
-            throw new InvalidTokenException("Invalid or expired token");
+            throw new InvalidTokenException("Token inválido ou expirado");
         }
     }
 
@@ -71,7 +71,7 @@ public class TokenService {
             return UUID.fromString(jwt.getClaim("userId").asString());
 
         } catch (JWTVerificationException | IllegalArgumentException exception) {
-            throw new InvalidTokenException("Invalid or expired token");
+            throw new InvalidTokenException("Token inválido ou expirado");
         }
     }
 
@@ -86,7 +86,7 @@ public class TokenService {
             return jwt.getClaim("role").asString();
 
         } catch (JWTVerificationException exception) {
-            throw new InvalidTokenException("Invalid or expired token");
+            throw new InvalidTokenException("Token inválido ou expirado");
         }
     }
 

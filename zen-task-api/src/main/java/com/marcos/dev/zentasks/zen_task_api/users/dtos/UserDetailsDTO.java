@@ -20,16 +20,6 @@ public record UserDetailsDTO(
         LocalDateTime createdAt,
         UserStats stats
 ) {
-    public static UserDetailsDTO from(UserModel user) {
-        return new UserDetailsDTO(
-                user.getId(),
-                user.getUsername(),
-                user.getEmail(),
-                user.getRole(),
-                user.getCreatedAt(),
-                UserStats.from(user)
-        );
-    }
 
     /**
      * Classe interna para estatísticas do usuário

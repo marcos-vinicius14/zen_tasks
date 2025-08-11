@@ -12,8 +12,7 @@ public record AuthenticationResultDTO(
         String token,
         String username,
         String email,
-        UserRole role,
-        LocalDateTime lastLogin
+        UserRole role
 ) {
 
 }

@@ -26,3 +26,11 @@ logging:
   level:
     root: INFO
 
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET}
+      issuer: ${ISSUER}
+      expiration_hours: ${EXPIRATION_HOURS}
+
+
