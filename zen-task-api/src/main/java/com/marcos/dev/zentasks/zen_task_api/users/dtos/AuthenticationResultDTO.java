@@ -12,16 +12,7 @@ public record AuthenticationResultDTO(
         String token,
         String username,
         String email,
-        UserRole role,
-        LocalDateTime lastLogin
+        UserRole role
 ) {
-    public static AuthenticationResultDTO from(UserModel user, String token) {
-        return new AuthenticationResultDTO(
-                token,
-                user.getUsername(),
-                user.getEmail(),
-                user.getRole(),
-                LocalDateTime.now()
-        );
-    }
+
 }

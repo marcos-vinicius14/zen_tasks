@@ -25,4 +25,24 @@ spring:
 logging:
   level:
     root: INFO
+    com.marcos.dev.zentasks: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/zentasks.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 7
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET}
+      issuer: ${ISSUER}
+      expiration_hours: ${EXPIRATION_HOURS}
+
 

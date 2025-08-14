@@ -17,14 +17,5 @@ public record RegistrationResultDTO(
         UUID userId,
         LocalDateTime createdAt
 ) {
-    public static RegistrationResultDTO from(UserModel user, String token) {
-        return new RegistrationResultDTO(
-                token,
-                user.getUsername(),
-                user.getEmail(),
-                user.getRole(),
-                user.getId(),
-                user.getCreatedAt()
-        );
-    }
+
 }
