@@ -10,6 +10,7 @@ import com.marcos.dev.zentasks.zen_task_api.users.dtos.ChangePasswordRequest;
 import com.marcos.dev.zentasks.zen_task_api.users.dtos.RegisterDTO;
 import com.marcos.dev.zentasks.zen_task_api.users.dtos.RegistrationResultDTO;
 import com.marcos.dev.zentasks.zen_task_api.users.factories.UserFactory;
+import com.marcos.dev.zentasks.zen_task_api.users.mappers.UserMapper;
 import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.users.repository.UserRepository;
 
@@ -17,9 +18,13 @@ import com.marcos.dev.zentasks.zen_task_api.users.repository.UserRepository;
 public class UserServiceImpl implements UserServiceInterface {
 
   private final UserRepository userRepository;
+  private final UserMapper userMapper;
 
-  public UserServiceImpl(UserRepository userRepository) {
+  public UserServiceImpl(
+      UserRepository userRepository,
+      UserMapper userMapper) {
     this.userRepository = userRepository;
+    this.userMapper = userMapper;
   }
 
   @Override
@@ -45,7 +50,7 @@ public class UserServiceImpl implements UserServiceInterface {
 
     userRepository.save(user);
 
-    return null;
+    return userMapper.toResultDTO(user);
   }
 
   @Override
