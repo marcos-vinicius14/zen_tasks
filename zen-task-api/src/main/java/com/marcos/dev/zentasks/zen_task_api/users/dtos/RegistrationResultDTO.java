@@ -9,7 +9,6 @@ import java.util.UUID;
  * DTO para retorno do resultado do registro
  */
 public record RegistrationResultDTO(
-    String token,
     String username,
     String email,
     UserRole role,
