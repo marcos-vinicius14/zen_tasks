@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: marcos_vinicius
+      changes:
+        - addColumn:
+            tableName: tb_users
+            columns:
+              - column:
+                  name: role
+                  type: varchar(255)

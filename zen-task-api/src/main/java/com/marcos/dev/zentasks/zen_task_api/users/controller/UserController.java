@@ -16,7 +16,7 @@ import com.marcos.dev.zentasks.zen_task_api.users.dtos.RegistrationResultDTO;
 import com.marcos.dev.zentasks.zen_task_api.users.services.UserServiceInterface;
 
 @RestController
-@RequestMapping("/v1/login")
+@RequestMapping("/v1")
 public class UserController {
 
   private static final Logger logger = LoggerFactory.getLogger(UserController.class);
