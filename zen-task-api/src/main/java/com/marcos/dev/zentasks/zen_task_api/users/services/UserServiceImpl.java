@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.DataConflictException;
@@ -56,12 +55,10 @@ public class UserServiceImpl implements UserServiceInterface {
       throw new DataConflictException("Nome de usuário já em uso");
     }
 
-    String encrypetedPassword = new BCryptPasswordEncoder().encode(data.password());
-
     UserModel user = UserFactory.create(
         data.username(),
         data.email(),
-        encrypetedPassword,
+        data.password(),
         data.role());
 
     userRepository.save(user);
