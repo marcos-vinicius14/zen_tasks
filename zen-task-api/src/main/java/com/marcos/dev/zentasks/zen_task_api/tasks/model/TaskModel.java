@@ -1,17 +1,28 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 
-import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
-import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
-import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
-import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
-import jakarta.persistence.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.annotation.CreatedDate;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
+import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
+import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 
 /**
  * Entity representing a Task in the system.
@@ -71,9 +82,9 @@ public class TaskModel {
   @Column(name = "completed_at")
   private LocalDateTime completedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id", nullable = false)
-  private UserModel user;
+  @CreatedBy
+  @Column(name = "user_id", nullable = false)
+  private UUID userId;
 
   private TaskModel() {
   }
@@ -256,8 +267,8 @@ public class TaskModel {
       return this;
     }
 
-    public TaskBuilder user(UserModel user) {
-      task.user = user;
+    public TaskBuilder userId(UUID user) {
+      task.userId = user;
       return this;
     }
 
@@ -289,7 +300,7 @@ public class TaskModel {
       if (task.dueDate == null) {
         throw new BusinessRuleException(ERROR_DUE_DATE_REQUIRED);
       }
-      if (task.user == null) {
+      if (task.userId == null) {
         throw new BusinessRuleException(ERROR_USER_REQUIRED);
       }
       if (task.dueDate.isBefore(LocalDate.now())) {
@@ -353,8 +364,8 @@ public class TaskModel {
     return completedAt;
   }
 
-  public UserModel getUser() {
-    return user;
+  public UUID getUserId() {
+    return userId;
   }
 
   @Override
