@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add_fk_constraint
+      author: yourname
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: tb_tasks
+            constraintName: fk_task_user
+            referencedColumnNames: id
+            referencedTableName: tb_users
+            onDelete: CASCADE
+            onUpdate: CASCADE
