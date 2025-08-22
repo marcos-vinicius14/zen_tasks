@@ -8,9 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ForbiddenAccessException;
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.tasks.mappers.TaskMapper;
+import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.tasks.repository.TaskRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -26,7 +30,8 @@ public class TaskServiceImpl implements TaskService {
   }
 
   @Override
-  public void createNewTask(CreateTaskDTO data) {
+  @Transactional
+  public TaskResponseDTO createNewTask(CreateTaskDTO data) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
     if (authentication == null || !authentication.isAuthenticated()) {
@@ -36,7 +41,16 @@ public class TaskServiceImpl implements TaskService {
 
     }
 
-    throw new UnsupportedOperationException("Unimplemented method 'createNewTask'");
+    logger.info("[TASKSERVICE] O Usuário {} esta criando a tarefa {}", authentication.getName(), data.title());
+
+    TaskModel savedTask = taskMapper.toEntity(data);
+    taskRepository.save(savedTask);
+
+    TaskResponseDTO result = taskMapper.toResponseDTO(savedTask);
+
+    logger.debug("[TASKSERVICE] Task {} criada com sucesso!", result.id());
+
+    return result;
   }
 
   @Override

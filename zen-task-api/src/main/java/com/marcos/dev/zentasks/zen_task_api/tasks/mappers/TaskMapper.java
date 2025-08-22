@@ -85,7 +85,6 @@ public class TaskMapper {
       return entity.updateDetails(newTitle, newDescription, newDueDate);
     }
 
-    // Se houver mudanças nas flags de prioridade, atualiza
     if (shouldUpdatePriority(dto, entity)) {
       boolean isUrgent = dto.isUrgent() != null ? dto.isUrgent() : entity.isUrgent();
       boolean isImportant = dto.isImportant() != null ? dto.isImportant() : entity.isImportant();
