@@ -3,16 +3,15 @@ package com.marcos.dev.zentasks.zen_task_api.tasks.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
+import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +20,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
@@ -82,9 +83,9 @@ public class TaskModel {
   @Column(name = "completed_at")
   private LocalDateTime completedAt;
 
-  @CreatedBy
-  @Column(name = "user_id", nullable = false)
-  private UUID userId;
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false)
+  private UserModel user;
 
   private TaskModel() {
   }
@@ -230,7 +231,7 @@ public class TaskModel {
   @PrePersist
   protected void onCreate() {
     createdAt = LocalDateTime.now();
-    logger.debug("Task creation timestamp set: {}", createdAt);
+    logger.debug("Task creation timestamp set: {}\n", createdAt);
   }
 
   public static class TaskBuilder {
@@ -267,8 +268,8 @@ public class TaskModel {
       return this;
     }
 
-    public TaskBuilder userId(UUID user) {
-      task.userId = user;
+    public TaskBuilder user(UserModel user) {
+      task.user = user;
       return this;
     }
 
@@ -286,7 +287,7 @@ public class TaskModel {
       if (task.quadrant == null) {
         task.quadrant = determineQuadrant(task.isUrgent, task.isImportant);
       }
-      logger.info("Created new task: {} with due date: {}", task.title, task.dueDate);
+      logger.info("Created new task: {} with due date: {}\n", task.title, task.dueDate);
       return task;
     }
 
@@ -300,7 +301,7 @@ public class TaskModel {
       if (task.dueDate == null) {
         throw new BusinessRuleException(ERROR_DUE_DATE_REQUIRED);
       }
-      if (task.userId == null) {
+      if (task.user == null) {
         throw new BusinessRuleException(ERROR_USER_REQUIRED);
       }
       if (task.dueDate.isBefore(LocalDate.now())) {
@@ -364,8 +365,8 @@ public class TaskModel {
     return completedAt;
   }
 
-  public UUID getUserId() {
-    return userId;
+  public UserModel getUser() {
+    return user;
   }
 
   @Override
@@ -385,9 +386,9 @@ public class TaskModel {
 
   @Override
   public String toString() {
-    return "TaskModel{" +
-        "id=" + id +
-        ", title='" + title + '\'' +
+    return "TaskModel{"
+        + "id=" + id +
+        ", title='" + title + "'" +
         ", status=" + status +
         ", quadrant=" + quadrant +
         ", dueDate=" + dueDate +

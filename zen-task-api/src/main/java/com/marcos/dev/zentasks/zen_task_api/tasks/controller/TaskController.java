@@ -22,11 +22,9 @@ public class TaskController {
   private static Logger logger = LoggerFactory.getLogger(TaskController.class);
 
   private final TaskService taskService;
-  private final TaskMapper taskMapper;
 
-  public TaskController(TaskService taskService, TaskMapper taskMapper) {
+  public TaskController(TaskService taskService) {
     this.taskService = taskService;
-    this.taskMapper = taskMapper;
   }
 
   @PostMapping
