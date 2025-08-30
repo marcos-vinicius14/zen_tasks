@@ -55,6 +55,7 @@ public class TaskMapper {
         entity.isUrgent(),
         entity.isImportant(),
         entity.isCompleted(),
+        entity.getQuadrant(),
         entity.getCreatedAt(),
         entity.getCompletedAt());
   }

@@ -47,7 +47,7 @@ public class TaskModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "task_id")
+  @Column(name = "id")
   private Long id;
 
   @Column(name = "title", nullable = false, length = 150)
@@ -66,10 +66,10 @@ public class TaskModel {
   private boolean isImportant;
 
   @Column(name = "is_completed")
-  private boolean isCompleted;
+  private boolean isCompleted = false;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "status", nullable = false, length = 20)
+  @Column(name = "task_status", nullable = false, length = 20)
   private TaskStatus status = TaskStatus.CREATED;
 
   @Enumerated(EnumType.STRING)
