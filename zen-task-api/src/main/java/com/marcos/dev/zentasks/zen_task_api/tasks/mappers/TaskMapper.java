@@ -5,6 +5,8 @@ import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.tasks.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
+import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -23,7 +25,7 @@ public class TaskMapper {
    * @param dto The DTO containing the data for the new task.
    * @return A new TaskModel instance ready to be persisted.
    */
-  public TaskModel toEntity(CreateTaskDTO dto) {
+  public TaskModel toEntity(CreateTaskDTO dto, UserModel userReference) {
     logger.debug("Converting CreateTaskDTO to TaskModel: {}", dto.title());
 
     return TaskModel.builder()
@@ -32,6 +34,7 @@ public class TaskMapper {
         .dueDate(dto.dueDate())
         .important(dto.isImportant())
         .urgent(dto.isUrgent())
+        .user(userReference)
         .build();
   }
 

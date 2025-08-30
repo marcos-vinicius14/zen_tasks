@@ -1,5 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.tasks.service;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -13,7 +15,11 @@ import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.tasks.mappers.TaskMapper;
 import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.tasks.repository.TaskRepository;
+import com.marcos.dev.zentasks.zen_task_api.users.dtos.UserDetailsDTO;
+import com.marcos.dev.zentasks.zen_task_api.users.model.UserModel;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -23,6 +29,9 @@ public class TaskServiceImpl implements TaskService {
 
   private final TaskRepository taskRepository;
   private final TaskMapper taskMapper;
+
+  @PersistenceContext
+  private EntityManager entityManager;
 
   public TaskServiceImpl(TaskRepository taskRepository, TaskMapper taskMapper) {
     this.taskRepository = taskRepository;
@@ -43,10 +52,21 @@ public class TaskServiceImpl implements TaskService {
 
     logger.info("[TASKSERVICE] O Usuário {} esta criando a tarefa {}", authentication.getName(), data.title());
 
-    TaskModel savedTask = taskMapper.toEntity(data);
-    taskRepository.save(savedTask);
+    UUID authenticatedUserId = getUserIdFromAutentication(authentication);
 
-    TaskResponseDTO result = taskMapper.toResponseDTO(savedTask);
+    logger.debug("User ID obtido da autenticação: {}", authenticatedUserId);
+
+    UserModel userReference = entityManager.getReference(UserModel.class, authenticatedUserId);
+
+    TaskModel taskToSave = taskMapper.toEntity(data, userReference);
+
+    logger.debug("Task após setar user: {}", taskToSave.getUser());
+
+    logger.debug("User ID na task: {}", taskToSave.getUser() != null ? taskToSave.getUser().getId() : "NULL");
+
+    taskRepository.save(taskToSave);
+
+    TaskResponseDTO result = taskMapper.toResponseDTO(taskToSave);
 
     logger.debug("[TASKSERVICE] Task {} criada com sucesso!", result.id());
 
@@ -57,5 +77,14 @@ public class TaskServiceImpl implements TaskService {
   public void editTask(UpdateTaskDTO data) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'editTask'");
+  }
+
+  private UUID getUserIdFromAutentication(Authentication authentication) {
+    logger.debug("=== EXTRAINDO USER ID ===");
+    logger.debug("Authentication principal type: {}", authentication.getPrincipal().getClass());
+
+    UserModel userDetails = (UserModel) authentication.getPrincipal();
+
+    return userDetails.getId();
   }
 }
