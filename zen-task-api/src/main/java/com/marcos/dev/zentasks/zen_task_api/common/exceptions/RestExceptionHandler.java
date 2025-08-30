@@ -1,6 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
 import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ErrorResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ValidationErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -135,6 +136,52 @@ public class RestExceptionHandler {
                 "Dados invalidos",
                 ex.getMessage(),
                 LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerInvalidTokenException(InvalidTokenException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.UNAUTHORIZED.value(),
+                "Token Invalido!",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
+    @ExceptionHandler(TokenGenerationException.class)
+    public ResponseEntity<ErrorResponseDTO> handlerTokenGenerationException(TokenGenerationException ex) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Erro ao gerar o token!",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(
+                errorResponseDTO,
+                HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
+
+    @ExceptionHandler(UserValidationException.class)
+    public ResponseEntity<ValidationErrorResponseDTO> handlerUserValidationException(UserValidationException ex) {
+        ValidationErrorResponseDTO errorResponseDTO = new ValidationErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Erro de validação",
+                ex.getMessage(),
+                LocalDateTime.now(),
+                ex.getErrors()
         );
 
         return new ResponseEntity<>(

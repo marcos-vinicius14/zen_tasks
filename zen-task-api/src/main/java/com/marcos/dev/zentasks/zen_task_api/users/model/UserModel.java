@@ -1,7 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.users.model;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
-import com.marcos.dev.zentasks.zen_task_api.tasks.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.users.enums.UserRole;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,9 +38,6 @@ public class UserModel implements UserDetails {
 
   @Column(name = "updated_at")
   private LocalDateTime updatedAt;
-
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<TaskModel> tasks = new HashSet<TaskModel>();
 
   public UserModel() {
   }
@@ -110,24 +106,8 @@ public class UserModel implements UserDetails {
     return new BCryptPasswordEncoder().matches(password, this.passwordHash);
   }
 
-  public void addTask(TaskModel task) {
-    this.tasks.add(task);
-  }
-
-  public void removeTask(TaskModel task) {
-    this.tasks.remove(task);
-  }
-
-  public void removeAllTasks() {
-    this.tasks.clear();
-  }
-
   public UUID getId() {
     return id;
-  }
-
-  public Set<TaskModel> getTasks() {
-    return tasks;
   }
 
   @Override
@@ -184,8 +164,7 @@ public class UserModel implements UserDetails {
     UserModel userModel = (UserModel) o;
     return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username)
         && Objects.equals(email, userModel.email) && Objects.equals(passwordHash, userModel.passwordHash)
-        && Objects.equals(createdAt, userModel.createdAt) && Objects.equals(updatedAt, userModel.updatedAt)
-        && Objects.equals(tasks, userModel.tasks);
+        && Objects.equals(createdAt, userModel.createdAt) && Objects.equals(updatedAt, userModel.updatedAt);
   }
 
   @Override
