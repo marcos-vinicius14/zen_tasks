@@ -4,11 +4,10 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ForbiddenAccessException;
+import com.marcos.dev.zentasks.zen_task_api.common.domain.security.annotations.RequireAuthentication;
+import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.AuthenticatedUserService;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
@@ -28,62 +27,47 @@ public class TaskServiceImpl implements TaskService {
 
   private final TaskRepository taskRepository;
   private final TaskMapper taskMapper;
+  private final AuthenticatedUserService authenticatedUserService;
 
   @PersistenceContext
   private EntityManager entityManager;
 
-  public TaskServiceImpl(TaskRepository taskRepository, TaskMapper taskMapper) {
+  public TaskServiceImpl(
+      TaskRepository taskRepository,
+      TaskMapper taskMapper,
+      AuthenticatedUserService authenticatedUserService) {
     this.taskRepository = taskRepository;
     this.taskMapper = taskMapper;
+    this.authenticatedUserService = authenticatedUserService;
   }
 
   @Override
   @Transactional
+  @RequireAuthentication(message = "Usuário deve estar autenticado para criar uma nova tarefa!")
   public TaskResponseDTO createNewTask(CreateTaskDTO data) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    UUID userID = authenticatedUserService.getCurrentUserId();
+    String username = authenticatedUserService.getCurrrentUsername();
 
-    if (authentication == null || !authentication.isAuthenticated()) {
+    logger.info("[TASKSERVICE] Usuário {} criando tarefa '{}'", username, data.title());
 
-      logger.warn("Usuário não autenticado.");
-      throw new ForbiddenAccessException("[TaskService] Usuário não autenticado.");
-
-    }
-
-    logger.info("[TASKSERVICE] O Usuário {} esta criando a tarefa {}", authentication.getName(), data.title());
-
-    UUID authenticatedUserId = getUserIdFromAutentication(authentication);
-
-    logger.debug("User ID obtido da autenticação: {}", authenticatedUserId);
-
-    UserModel userReference = entityManager.getReference(UserModel.class, authenticatedUserId);
+    UserModel userReference = entityManager.getReference(UserModel.class, userID);
 
     TaskModel taskToSave = taskMapper.toEntity(data, userReference);
-
-    logger.debug("Task após setar user: {}", taskToSave.getUser());
-
-    logger.debug("User ID na task: {}", taskToSave.getUser() != null ? taskToSave.getUser().getId() : "NULL");
 
     taskRepository.save(taskToSave);
 
     TaskResponseDTO result = taskMapper.toResponseDTO(taskToSave);
 
-    logger.debug("[TASKSERVICE] Task {} criada com sucesso!", result.id());
+    logger.info("[TASKSERVICE] Task {} criada com sucesso para usuário {}",
+        result.id(), username);
 
     return result;
+
   }
 
   @Override
   public void editTask(UpdateTaskDTO data) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'editTask'");
-  }
-
-  private UUID getUserIdFromAutentication(Authentication authentication) {
-    logger.debug("=== EXTRAINDO USER ID ===");
-    logger.debug("Authentication principal type: {}", authentication.getPrincipal().getClass());
-
-    UserModel userDetails = (UserModel) authentication.getPrincipal();
-
-    return userDetails.getId();
   }
 }
