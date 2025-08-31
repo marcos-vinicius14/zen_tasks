@@ -2,8 +2,8 @@ spring:
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
-    username: sa
-    password: password
+    username: ${DB_TEST_USERNAME}
+    password: ${DB_TEST_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
   liquibase:
@@ -12,7 +12,7 @@ spring:
 api:
   security:
     token:
-      secret: 54116e23-860e-463f-aa6f-2935d8dd0f0b
-      issuer: test-issuer
+      secret: ${API_SECURITY_TOKEN_SECRET}
+      issuer: ${API_SECURITY_TOKEN_ISSUER}
       expiration_hours: 2
 
