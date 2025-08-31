@@ -25,16 +25,17 @@ public class TaskServiceImpl implements TaskService {
   private final TaskMapper taskMapper;
   private final AuthenticatedUserService authenticatedUserService;
 
-  @PersistenceContext
-  private EntityManager entityManager;
+  private final EntityManager entityManager;
 
   public TaskServiceImpl(
       TaskRepository taskRepository,
       TaskMapper taskMapper,
-      AuthenticatedUserService authenticatedUserService) {
+      AuthenticatedUserService authenticatedUserService,
+      EntityManager entityManager) {
     this.taskRepository = taskRepository;
     this.taskMapper = taskMapper;
     this.authenticatedUserService = authenticatedUserService;
+    this.entityManager = entityManager;
   }
 
   @Override

@@ -51,13 +51,7 @@ public class TaskMapper {
         entity.getId(),
         entity.getTitle(),
         entity.getDescription(),
-        entity.getDueDate(),
-        entity.isUrgent(),
-        entity.isImportant(),
-        entity.isCompleted(),
-        entity.getQuadrant(),
-        entity.getCreatedAt(),
-        entity.getCompletedAt());
+        entity.getStatus());
   }
 
   /**
