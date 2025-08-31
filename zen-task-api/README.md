@@ -1,113 +1,68 @@
-# Zen Task API
+# ZenTasks API
 
-Zen Task API is a powerful and intuitive task management solution designed to help you prioritize your tasks effectively using the Eisenhower Matrix. By categorizing tasks based on urgency and importance, you can focus on what truly matters, enhancing your productivity and reducing stress.
+## Visão Geral
 
-## The Eisenhower Matrix
+A ZenTasks API é uma aplicação para gerenciamento de tarefas, desenvolvida com foco em arquitetura limpa e design modular. A API permite que os usuários gerenciem suas tarefas de forma eficiente, utilizando a Matriz de Eisenhower para priorização.
 
-The Eisenhower Matrix is a productivity tool that helps you organize and prioritize tasks by urgency and importance. Tasks are divided into four quadrants:
+## Arquitetura
 
-1.  **Urgent & Important (Do First):** Critical tasks that need immediate attention.
-2.  **Important & Not Urgent (Schedule):** Tasks that are important for long-term goals but don't have a pressing deadline.
-3.  **Urgent & Not Important (Delegate):** Tasks that need to be done now but don't require your specific skills.
-4.  **Not Urgent & Not Important (Delete):** Distractions that should be avoided.
+O projeto segue uma arquitetura de **Monólito Modular** com princípios de **Domain-Driven Design (DDD)** e **Clean Architecture**.
 
-## Features
+### Monólito Modular
 
-*   RESTful API for managing users and tasks.
-*   Task prioritization based on the Eisenhower Matrix.
-*   Secure endpoints with Spring Security.
-*   Database migrations managed with Liquibase.
-*   Containerized for easy setup and deployment with Docker.
+A aplicação é estruturada em módulos independentes: `tasks` e `users`. Cada módulo é responsável por uma área de negócio específica, o que facilita a manutenção, o desenvolvimento e a escalabilidade do sistema.
 
-## Technologies Used
+### Domain-Driven Design (DDD)
 
-*   **Backend:** Java 21, Spring Boot 3
-*   **Database:** PostgreSQL
-*   **Build Tool:** Maven
-*   **Database Migrations:** Liquibase
-*   **Containerization:** Docker, Docker Compose
+O coração da aplicação é o seu domínio. Cada módulo possui um diretório `Domain` que contém as entidades, enums e a lógica de negócio. As entidades são ricas em comportamento (Domínio Rico), encapsulando as regras de negócio e garantindo a consistência dos dados.
 
-## Prerequisites
+### Clean Architecture
 
-Before you begin, ensure you have the following installed:
+A separação de responsabilidades é um pilar fundamental do projeto. Cada módulo é dividido em três camadas principais:
 
-*   Java 21
-*   Apache Maven
-*   Docker
-*   Docker Compose
+- **Application**: Orquestra os casos de uso da aplicação. É responsável por receber as requisições, chamar os serviços de domínio e retornar as respostas.
+- **Domain**: Contém a lógica de negócio e as entidades. É a camada mais interna e não depende de nenhuma outra camada.
+- **Infrastructure**: Lida com as preocupações externas, como acesso a banco de dados e segurança.
 
-## Getting Started
+## Funcionalidades
 
-Follow these steps to get the application up and running.
+- **Gerenciamento de Usuários**:
+    - Registro de novos usuários (`POST /v1/register`)
+    - Autenticação de usuários (`POST /v1/login`)
+- **Gerenciamento de Tarefas**:
+    - Criação de novas tarefas (`POST /v1/tasks`)
+    - Priorização com a Matriz de Eisenhower: As tarefas são classificadas como urgentes e/ou importantes para determinar o quadrante da matriz (Faça Agora, Agende, Delegue, Elimine).
 
-### 1. Clone the repository
+## Testes
 
-```bash
-git clone <repository-url>
-cd zen-task-api
-```
+O projeto possui testes unitários para garantir a qualidade e o correto funcionamento da lógica de negócio. Os testes existentes cobrem a camada de serviço do módulo de tarefas (`TaskService`).
 
-### 2. Configure Environment Variables
+## Como Executar
 
-The application uses `.env` files to manage environment variables. You will need to create two files at the root of the project:
+### Pré-requisitos
 
-**`.env`** (for the application)
-```properties
-# Example:
-SPRING_PROFILES_ACTIVE=dev
-```
+- Java 17
+- Maven
 
-**`.env.db`** (for the database)
-```properties
-# Example:
-POSTGRES_DB=zentasks
-POSTGRES_USER=admin
-POSTGRES_PASSWORD=secret
-```
+### Executando a Aplicação
 
-### 3. Run the Application
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/zen-task-api.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd zen-task-api
+   ```
+3. Execute a aplicação com o Maven:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
 
-The simplest way to run the application and the database is by using Docker Compose:
+### Executando os Testes
+
+Para executar os testes, utilize o seguinte comando Maven:
 
 ```bash
-docker-compose up -d --build
+./mvnw test
 ```
-
-The API will be available at `http://localhost:8080`.
-
-### 4. Running without Docker
-
-You can also run the application directly using Maven. Make sure you have a PostgreSQL instance running and have configured the connection details in `src/main/resources/application-dev.yml`.
-
-```bash
-mvn spring-boot:run
-```
-
-## Building the Project
-
-To build the project into a JAR file, run the following command:
-
-```bash
-mvn clean package
-```
-
-The packaged JAR will be located in the `target/` directory.
-
-## API Endpoints
-
-*(This section is a placeholder. You should document your actual API endpoints here.)*
-
-The API provides endpoints for managing users and tasks.
-
-### Tasks
-
-*   `GET /api/tasks` - Get all tasks.
-*   `GET /api/tasks/{id}` - Get a task by ID.
-*   `POST /api/tasks` - Create a new task.
-*   `PUT /api/tasks/{id}` - Update an existing task.
-*   `DELETE /api/tasks/{id}` - Delete a task.
-
-### Users
-
-*   `POST /api/users/register` - Register a new user.
-*   `POST /api/users/login` - Authenticate a user.
