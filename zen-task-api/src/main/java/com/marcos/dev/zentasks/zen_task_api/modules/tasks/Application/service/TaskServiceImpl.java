@@ -2,8 +2,6 @@ package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service;
 
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.marcos.dev.zentasks.zen_task_api.common.domain.security.annotations.RequireAuthentication;
@@ -22,8 +20,6 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
-
-  private static Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
   private final TaskRepository taskRepository;
   private final TaskMapper taskMapper;
@@ -46,10 +42,6 @@ public class TaskServiceImpl implements TaskService {
   @RequireAuthentication(message = "Usuário deve estar autenticado para criar uma nova tarefa!")
   public TaskResponseDTO createNewTask(CreateTaskDTO data) {
     UUID userID = authenticatedUserService.getCurrentUserId();
-    String username = authenticatedUserService.getCurrrentUsername();
-
-    logger.info("[TASKSERVICE] Usuário {} criando tarefa '{}'", username, data.title());
-
     UserModel userReference = entityManager.getReference(UserModel.class, userID);
 
     TaskModel taskToSave = taskMapper.toEntity(data, userReference);
@@ -57,9 +49,6 @@ public class TaskServiceImpl implements TaskService {
     taskRepository.save(taskToSave);
 
     TaskResponseDTO result = taskMapper.toResponseDTO(taskToSave);
-
-    logger.info("[TASKSERVICE] Task {} criada com sucesso para usuário {}",
-        result.id(), username);
 
     return result;
 
