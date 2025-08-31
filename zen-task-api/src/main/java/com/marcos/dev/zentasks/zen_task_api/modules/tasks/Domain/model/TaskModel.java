@@ -9,12 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
+import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.persistence.TaskEntityListener;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ import jakarta.persistence.Table;
  * Matrix.
  */
 @Entity
+@EntityListeners(TaskEntityListener.class)
 @Table(name = "tb_tasks")
 public class TaskModel {
   private static final Logger logger = LoggerFactory.getLogger(TaskModel.class);
