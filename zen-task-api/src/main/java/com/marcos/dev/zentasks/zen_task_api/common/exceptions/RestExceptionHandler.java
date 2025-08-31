@@ -1,7 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
-import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ErrorResponseDTO;
-import com.marcos.dev.zentasks.zen_task_api.tasks.dtos.ValidationErrorResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.ErrorResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.ValidationErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
