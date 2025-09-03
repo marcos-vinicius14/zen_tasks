@@ -21,7 +21,6 @@ import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.Auth
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service.TaskService;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service.TaskServiceImpl;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
