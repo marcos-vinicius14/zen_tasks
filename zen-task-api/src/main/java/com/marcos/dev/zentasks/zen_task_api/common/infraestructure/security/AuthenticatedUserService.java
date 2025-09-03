@@ -25,7 +25,7 @@ public class AuthenticatedUserService {
   public Authentication getCurrentAuthentication() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-    if (authentication == null) {
+    if (authentication == null || !authentication.isAuthenticated()) {
       throw new ForbiddenAccessException("Usuário não autenticado");
     }
 
