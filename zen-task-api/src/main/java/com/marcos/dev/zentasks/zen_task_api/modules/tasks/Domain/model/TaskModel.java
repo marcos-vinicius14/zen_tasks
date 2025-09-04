@@ -231,6 +231,16 @@ public class TaskModel {
     return Quadrant.ELIMINATE;
   }
 
+  private boolean isOwnedBy(UserModel userToVerify) {
+    logger.info("Verificando se a task {} pertence ao user {}", this.title, userToVerify.getUsername());
+
+    if (userToVerify == null || this.user == null) {
+      return false;
+    }
+
+    return this.user.equals(userToVerify);
+  }
+
   @PrePersist
   protected void onCreate() {
     createdAt = LocalDateTime.now();
