@@ -15,7 +15,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.reposit
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -56,6 +55,7 @@ public class TaskServiceImpl implements TaskService {
   }
 
   @Override
+  @RequireAuthentication(message = "Você deve estar autenticado para atualizar uma nova tarefa.")
   public void editTask(UpdateTaskDTO data) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'editTask'");
