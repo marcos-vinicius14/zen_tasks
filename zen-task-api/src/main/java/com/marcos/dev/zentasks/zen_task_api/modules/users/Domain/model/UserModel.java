@@ -159,12 +159,12 @@ public class UserModel implements UserDetails {
 
   @Override
   public boolean equals(Object o) {
+    if (this == o)
+      return true;
     if (o == null || getClass() != o.getClass())
       return false;
     UserModel userModel = (UserModel) o;
-    return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username)
-        && Objects.equals(email, userModel.email) && Objects.equals(passwordHash, userModel.passwordHash)
-        && Objects.equals(createdAt, userModel.createdAt) && Objects.equals(updatedAt, userModel.updatedAt);
+    return Objects.equals(id, userModel.id);
   }
 
   @Override
