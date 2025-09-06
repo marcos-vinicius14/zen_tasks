@@ -1,14 +1,13 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
 public record UpdateTaskDTO(
-    @NotBlank UUID taskId,
+    @NotBlank Long taskId,
     @Size(min = 3, max = 300, message = "O título deve ter entre 3 e 300 caracteres.") String title,
 
     @Size(min = 3, max = 1000, message = "A descrição deve ter entre 3 e 1000 caracteres.") String description,

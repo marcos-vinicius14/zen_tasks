@@ -126,12 +126,18 @@ public class TaskModel {
    * 
    * @return true if any changes were made, false otherwise
    */
-  public boolean updateDetails(String newTitle, String newDescription, LocalDate newDueDate) {
+  public boolean updateDetails(String newTitle, String newDescription, LocalDate newDueDate, UserModel currentUser) {
+
     validateInput(newTitle, newDescription, newDueDate);
     validateTaskModification();
 
     if (!hasChanges(newTitle, newDescription, newDueDate)) {
       logger.debug("No changes detected for task update");
+      return false;
+    }
+
+    if (!isOwnedBy(currentUser)) {
+      logger.debug("{} is not owner of current task", currentUser.getUsername());
       return false;
     }
 
