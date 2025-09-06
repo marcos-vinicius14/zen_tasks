@@ -4163,3 +4163,622 @@ Caused by: org.springframework.util.PlaceholderResolutionException: Could not re
 2025-09-06 22:54:22 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-09-06 22:54:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-09-06 22:54:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-09-06 22:57:13 [main] INFO  c.m.d.z.z.m.t.I.r.TaskRepositoryIntegrationTest - Starting TaskRepositoryIntegrationTest using Java 17.0.16 with PID 3839 (started by runner in /home/runner/work/zen_tasks/zen_tasks/zen-task-api)
+2025-09-06 22:57:13 [main] DEBUG c.m.d.z.z.m.t.I.r.TaskRepositoryIntegrationTest - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-09-06 22:57:13 [main] INFO  c.m.d.z.z.m.t.I.r.TaskRepositoryIntegrationTest - The following 1 profile is active: "test"
+2025-09-06 22:57:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-06 22:57:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 2 JPA repository interfaces.
+2025-09-06 22:57:14 [main] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-09-06 22:57:14 [main] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:c4e4d2e4-30f5-4e88-9daf-b94b2307ffa9;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-09-06 22:57:15 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-06 22:57:15 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-09-06 22:57:15 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-06 22:57:15 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-06 22:57:15 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-06 22:57:15 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory$EmbeddedDataSourceProxy@14f35726']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-06 22:57:16 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-06 22:57:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 22:57:17 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-06 22:57:18 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authorizationService
+2025-09-06 22:57:18 [main] INFO  c.m.d.z.z.m.t.I.r.TaskRepositoryIntegrationTest - Started TaskRepositoryIntegrationTest in 6.317 seconds (process running for 7.961)
+2025-09-06 22:57:19 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Integration Test Task with due date: 2025-09-07
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Integration Test Task 
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:19.458286406
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Integration Test Task persistida com sucessso
+2025-09-06 22:57:19 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task Today with due date: 2025-09-06
+
+2025-09-06 22:57:19 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task Tomorrow with due date: 2025-09-07
+
+2025-09-06 22:57:19 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task Next Week with due date: 2025-09-13
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task Today 
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:19.769316569
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task Today persistida com sucessso
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task Tomorrow 
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:19.771976694
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task Tomorrow persistida com sucessso
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task Next Week 
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:19.773775292
+
+2025-09-06 22:57:19 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task Next Week persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Created Task with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: In Progress Task with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Task status changed from CREATED to IN_PROGRESS - ID: null
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Created Task 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.097028695
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Created Task persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: In Progress Task 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.099949086
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task In Progress Task persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Urgent Important with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Important Not Urgent with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Urgent Not Important with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Urgent Important 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.278255199
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Urgent Important persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Important Not Urgent 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.280308411
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Important Not Urgent persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Urgent Not Important 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.282250386
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Urgent Not Important persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Urgent Important with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Urgent Not Important with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Not Urgent Important with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Urgent Important 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.472000698
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Urgent Important persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Urgent Not Important 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.474107290
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Urgent Not Important persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Not Urgent Important 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.475693682
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Not Urgent Important persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: User Specific Task with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: User Specific Task 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.641174863
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task User Specific Task persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task 1 with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task 2 with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Task 3 with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task 1 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.811509365
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task 1 persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task 2 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.813400284
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task 2 persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Task 3 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.815216826
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Task 3 persistida com sucessso
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Incomplete 1 with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Incomplete 2 with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Completed with due date: 2025-09-07
+
+2025-09-06 22:57:20 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Task status changed from CREATED to DONE - ID: null
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Incomplete 1 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.982487353
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Incomplete 1 persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Incomplete 2 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.984665980
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Incomplete 2 persistida com sucessso
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Completed 
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:20.986327932
+
+2025-09-06 22:57:20 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Completed persistida com sucessso
+2025-09-06 22:57:21 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Completed Task with due date: 2025-09-07
+
+2025-09-06 22:57:21 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Task status changed from CREATED to DONE - ID: null
+2025-09-06 22:57:21 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Incomplete Task with due date: 2025-09-07
+
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Completed Task 
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:21.163553786
+
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Completed Task persistida com sucessso
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Incomplete Task 
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T22:57:21.165348656
+
+2025-09-06 22:57:21 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Incomplete Task persistida com sucessso
+2025-09-06 22:57:21 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepositoryIntegrationTest]: UserRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-06 22:57:21 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.marcos.dev.zentasks.zen_task_api.ZenTaskApiApplication for test class com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepositoryIntegrationTest
+2025-09-06 22:57:22 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 22:59:57 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Starting TaskServiceIntegrationTest using Java 17.0.16 with PID 4082 (started by runner in /home/runner/work/zen_tasks/zen_tasks/zen-task-api)
+2025-09-06 22:59:57 [main] DEBUG c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-09-06 22:59:57 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - The following 1 profile is active: "test"
+2025-09-06 22:59:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-06 22:59:59 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 2 JPA repository interfaces.
+2025-09-06 22:59:59 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-06 22:59:59 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-09-06 23:00:00 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-06 23:00:00 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-06 23:00:00 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-06 23:00:00 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-09-06 23:00:00 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-06 23:00:01 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-06 23:00:01 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-06 23:00:02 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-06 23:00:02 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 23:00:02 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-06 23:00:03 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authorizationService
+2025-09-06 23:00:04 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Started TaskServiceIntegrationTest in 7.28 seconds (process running for 8.869)
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Do Now Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Do Now Task with due date: 2025-09-07
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Do Now Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.137537629
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Do Now Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Do Now Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Schedule Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Schedule Task with due date: 2025-09-11
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Schedule Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.206305232
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Schedule Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Schedule Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Delegate Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Delegate Task with due date: 2025-09-07
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Delegate Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.210607030
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Delegate Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Delegate Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Eliminate Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Eliminate Task with due date: 2025-09-16
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Eliminate Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.216080145
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Eliminate Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Eliminate Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: First Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: First Task with due date: 2025-09-07
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: First Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.578265073
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task First Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: First Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Second Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Second Task with due date: 2025-09-09
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Second Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.582313939
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Second Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Second Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Third Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Third Task with due date: 2025-09-13
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Third Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.584289647
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Third Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Third Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Tomorrow Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Tomorrow Task with due date: 2025-09-07
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Tomorrow Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.710850954
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Tomorrow Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Tomorrow Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Far Future Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Far Future Task with due date: 2026-09-06
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Far Future Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.715176287
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Far Future Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Far Future Task
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Concurrent Task 1
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Concurrent Task 1 with due date: 2025-09-07
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Concurrent Task 1 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.800041133
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Concurrent Task 1 persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Concurrent Task 1
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Concurrent Task 2
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Concurrent Task 2 with due date: 2025-09-08
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Concurrent Task 2 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.803811730
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Concurrent Task 2 persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Concurrent Task 2
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Integration Test Task
+2025-09-06 23:00:05 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Integration Test Task with due date: 2025-09-11
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Integration Test Task 
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:00:05.983532477
+
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Integration Test Task persistida com sucessso
+2025-09-06 23:00:05 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Integration Test Task
+2025-09-06 23:00:06 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest]: UserServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-06 23:00:06 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.marcos.dev.zentasks.zen_task_api.ZenTaskApiApplication for test class com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest
+2025-09-06 23:00:06 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para password_test_user
+2025-09-06 23:00:06 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: password_test_user
+2025-09-06 23:00:06 [main] ERROR c.m.d.z.z.m.u.A.s.UserServiceImpl - Falha geral na autenticação para usuário: password_test_user
+org.springframework.security.authentication.BadCredentialsException: Bad credentials
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:107)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:150)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceImpl.userAuthentication(UserServiceImpl.java:88)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceImpl$$SpringCGLIB$$0.userAuthentication(<generated>)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest.lambda$shouldThrowAuthenticationFailedExceptionWithWrongPassword$4(UserServiceIntegrationTest.java:203)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	at org.assertj.core.api.AssertionsForClassTypes.catchThrowable(AssertionsForClassTypes.java:904)
+	at org.assertj.core.api.Assertions.catchThrowable(Assertions.java:1472)
+	at org.assertj.core.api.Assertions.assertThatThrownBy(Assertions.java:1315)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest.shouldThrowAuthenticationFailedExceptionWithWrongPassword(UserServiceIntegrationTest.java:203)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:775)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:479)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:161)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:152)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:91)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:112)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:94)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:87)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:216)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:212)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:201)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:170)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:94)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:59)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:142)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$1(InterceptingLauncher.java:39)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:38)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-09-06 23:00:06 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para auth_test_user
+2025-09-06 23:00:06 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: auth_test_user
+2025-09-06 23:00:06 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para flow_test_user
+2025-09-06 23:00:06 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: flow_test_user
+2025-09-06 23:00:06 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para non_existing_user
+2025-09-06 23:00:06 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para 
+2025-09-06 23:00:06 [main] WARN  c.m.d.z.z.m.u.A.s.UserServiceImpl - Erro na autenticação. Campos de login vazaios para 
+2025-09-06 23:00:07 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 23:00:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-09-06 23:00:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-09-06 23:00:58 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Starting TaskServiceIntegrationTest using Java 17.0.16 with PID 4228 (started by runner in /home/runner/work/zen_tasks/zen_tasks/zen-task-api)
+2025-09-06 23:00:58 [main] DEBUG c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-09-06 23:00:58 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - The following 1 profile is active: "test"
+2025-09-06 23:00:59 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-06 23:00:59 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 79 ms. Found 2 JPA repository interfaces.
+2025-09-06 23:01:00 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-06 23:01:00 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-09-06 23:01:00 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-06 23:01:01 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-06 23:01:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-09-06 23:01:01 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-09-06 23:01:01 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-09-06 23:01:01 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-06 23:01:01 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-09-06 23:01:03 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-06 23:01:03 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 23:01:03 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-06 23:01:04 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name authorizationService
+2025-09-06 23:01:05 [main] INFO  c.m.d.z.z.m.t.A.s.TaskServiceIntegrationTest - Started TaskServiceIntegrationTest in 7.806 seconds (process running for 9.531)
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Do Now Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Do Now Task with due date: 2025-09-07
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Do Now Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.180303438
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Do Now Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Do Now Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Schedule Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Schedule Task with due date: 2025-09-11
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Schedule Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.231491512
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Schedule Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Schedule Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Delegate Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Delegate Task with due date: 2025-09-07
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Delegate Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.234336372
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Delegate Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Delegate Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Eliminate Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Eliminate Task with due date: 2025-09-16
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Eliminate Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.236779953
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Eliminate Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Eliminate Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: First Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: First Task with due date: 2025-09-07
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: First Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.532648926
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task First Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: First Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Second Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Second Task with due date: 2025-09-09
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Second Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.536479836
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Second Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Second Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Third Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Third Task with due date: 2025-09-13
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Third Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.538296761
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Third Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Third Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Tomorrow Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Tomorrow Task with due date: 2025-09-07
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Tomorrow Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.650897224
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Tomorrow Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Tomorrow Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Far Future Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Far Future Task with due date: 2026-09-06
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Far Future Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.654411802
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Far Future Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Far Future Task
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Concurrent Task 1
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Concurrent Task 1 with due date: 2025-09-07
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Concurrent Task 1 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.738660455
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Concurrent Task 1 persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Concurrent Task 1
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Concurrent Task 2
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Concurrent Task 2 with due date: 2025-09-08
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Concurrent Task 2 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.741814229
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Concurrent Task 2 persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Concurrent Task 2
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting CreateTaskDTO to TaskModel: Integration Test Task
+2025-09-06 23:01:06 [main] INFO  c.m.d.z.z.m.t.Domain.model.TaskModel - Created new task: Integration Test Task with due date: 2025-09-11
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Preparando para salvar a task: Integration Test Task 
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.Domain.model.TaskModel - Task creation timestamp set: 2025-09-06T23:01:06.923448621
+
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.c.i.p.TaskEntityListener - Task Integration Test Task persistida com sucessso
+2025-09-06 23:01:06 [main] DEBUG c.m.d.z.z.m.t.A.mappers.TaskMapper - Converting TaskModel to TaskResponseDTO: Integration Test Task
+2025-09-06 23:01:06 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest]: UserServiceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-06 23:01:06 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.marcos.dev.zentasks.zen_task_api.ZenTaskApiApplication for test class com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest
+2025-09-06 23:01:07 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para password_test_user
+2025-09-06 23:01:07 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: password_test_user
+2025-09-06 23:01:07 [main] ERROR c.m.d.z.z.m.u.A.s.UserServiceImpl - Falha geral na autenticação para usuário: password_test_user
+org.springframework.security.authentication.BadCredentialsException: Bad credentials
+	at org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(DaoAuthenticationProvider.java:107)
+	at org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider.authenticate(AbstractUserDetailsAuthenticationProvider.java:150)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceImpl.userAuthentication(UserServiceImpl.java:88)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceImpl$$SpringCGLIB$$0.userAuthentication(<generated>)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest.lambda$shouldThrowAuthenticationFailedExceptionWithWrongPassword$4(UserServiceIntegrationTest.java:203)
+	at org.assertj.core.api.ThrowableAssert.catchThrowable(ThrowableAssert.java:63)
+	at org.assertj.core.api.AssertionsForClassTypes.catchThrowable(AssertionsForClassTypes.java:904)
+	at org.assertj.core.api.Assertions.catchThrowable(Assertions.java:1472)
+	at org.assertj.core.api.Assertions.assertThatThrownBy(Assertions.java:1315)
+	at com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceIntegrationTest.shouldThrowAuthenticationFailedExceptionWithWrongPassword(UserServiceIntegrationTest.java:203)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:775)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:479)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:161)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:152)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:91)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:112)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:94)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:87)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:216)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:212)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:137)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:156)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:201)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:170)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:94)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:59)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:142)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$1(InterceptingLauncher.java:39)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:38)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:194)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-09-06 23:01:07 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para auth_test_user
+2025-09-06 23:01:07 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: auth_test_user
+2025-09-06 23:01:07 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para flow_test_user
+2025-09-06 23:01:07 [main] DEBUG c.m.d.z.z.m.u.A.s.AuthorizationService - Buscando usuário com username: flow_test_user
+2025-09-06 23:01:08 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para non_existing_user
+2025-09-06 23:01:08 [main] INFO  c.m.d.z.z.m.u.A.s.UserServiceImpl - Iniciando tentativa de autenticação para 
+2025-09-06 23:01:08 [main] WARN  c.m.d.z.z.m.u.A.s.UserServiceImpl - Erro na autenticação. Campos de login vazaios para 
+2025-09-06 23:01:08 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-09-06 23:01:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-09-06 23:01:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
