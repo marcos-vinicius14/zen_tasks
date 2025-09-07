@@ -82,7 +82,7 @@ public class UserModel implements UserDetails {
     validatePassword(newPassword);
 
     if (!new BCryptPasswordEncoder().matches(currentPassword, this.passwordHash)) {
-      throw new InvalidInputException("A senha atual esta incorreta");
+      throw new InvalidInputException("A senha atual está incorreta");
     }
 
     this.passwordHash = new BCryptPasswordEncoder().encode(newPassword);
