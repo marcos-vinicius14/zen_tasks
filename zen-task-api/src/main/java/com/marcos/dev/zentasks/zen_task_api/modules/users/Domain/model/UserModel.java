@@ -62,19 +62,19 @@ public class UserModel implements UserDetails {
 
   private static void validateUsername(String username) {
     if (username == null || username.isBlank()) {
-      throw new InvalidInputException("Username cannot be null or empty");
+      throw new InvalidInputException("Username não pode estar vazio!");
     }
   }
 
   private static void validateEmail(String email) {
     if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-      throw new InvalidInputException("Invalid email format");
+      throw new InvalidInputException("Email inválido.");
     }
   }
 
   private static void validatePassword(String password) {
     if (password == null || password.length() < 8) {
-      throw new InvalidInputException("Password must be at least 8 characters long");
+      throw new InvalidInputException("A senha deve conter, no minímo, 8 caracteres.");
     }
   }
 
@@ -82,7 +82,7 @@ public class UserModel implements UserDetails {
     validatePassword(newPassword);
 
     if (!new BCryptPasswordEncoder().matches(currentPassword, this.passwordHash)) {
-      throw new InvalidInputException("Current password is incorrect");
+      throw new InvalidInputException("A senha atual está incorreta");
     }
 
     this.passwordHash = new BCryptPasswordEncoder().encode(newPassword);
@@ -159,12 +159,12 @@ public class UserModel implements UserDetails {
 
   @Override
   public boolean equals(Object o) {
+    if (this == o)
+      return true;
     if (o == null || getClass() != o.getClass())
       return false;
     UserModel userModel = (UserModel) o;
-    return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username)
-        && Objects.equals(email, userModel.email) && Objects.equals(passwordHash, userModel.passwordHash)
-        && Objects.equals(createdAt, userModel.createdAt) && Objects.equals(updatedAt, userModel.updatedAt);
+    return Objects.equals(id, userModel.id);
   }
 
   @Override
