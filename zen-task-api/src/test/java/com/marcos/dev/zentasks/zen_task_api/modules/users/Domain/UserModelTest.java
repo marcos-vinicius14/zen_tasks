@@ -49,7 +49,7 @@ class UserModelTest {
   }
 
   @Test
-  @DisplayName("Should thow exception when current password is incorrect")
+  @DisplayName("Should throw exception when current password is incorrect")
   void changePassword_shouldThrowException_whenCurrentPasswordIsIncorrect() {
 
     String wrongCurrentPassword = "wrongPassword";
