@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Database
+  db:
+    image: postgres:16-alpine
+    env_file:
+      - ./zen-task-api/.env.db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - zentasks-network
+
+  # Backend API
+  api:
+    build:
+      context: ./zen-task-api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./zen-task-api/.env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - zentasks-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./zen-task-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8080
+    depends_on:
+      - api
+    networks:
+      - zentasks-network
+
+volumes:
+  db_data:
+
+networks:
+  zentasks-network:
+    driver: bridge

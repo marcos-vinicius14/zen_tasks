@@ -1,4 +1,47 @@
-# **ZenTasks API**
+# **ZenTasks - Full Stack Application**
+
+Complete task management application with Eisenhower Matrix, featuring a Spring Boot API and React frontend.
+
+## **Project Structure**
+
+```
+zen_tasks/
+├── zen-task-api/          # Spring Boot REST API
+│   ├── src/               # Java source code
+│   ├── Dockerfile         # API container
+│   └── docker-compose.yml # API + Database
+└── zen-task-frontend/     # React TypeScript frontend
+    ├── src/               # React source code
+    ├── Dockerfile         # Frontend container
+    └── README.md          # Frontend documentation
+```
+
+## **Quick Start**
+
+### **Run Everything with Docker Compose**
+
+From the root directory:
+
+```bash
+# Start all services (Frontend + API + Database)
+docker-compose up --build
+
+# Start in detached mode
+docker-compose up -d --build
+```
+
+**Services will be available at:**
+- **Frontend**: http://localhost:3000
+- **API**: http://localhost:8080
+- **Database**: localhost:5432
+
+### **Stop All Services**
+
+```bash
+docker-compose down
+```
+
+## **Backend (zen-task-api)**
 
 ## **Visão Geral**
 
@@ -71,3 +114,39 @@ Para executar a aplicação, bem como o banco de dados, de forma simples e rápi
 ```
 
    A API estará disponível em http://localhost:8080.
+
+## **Frontend (zen-task-frontend)**
+
+### **Technology Stack**
+- React 19 with TypeScript
+- TanStack Query for server state management
+- React Router for navigation
+- Bun as package manager
+- ESLint + Prettier for code quality
+- Husky for git hooks
+- Docker for containerization
+
+### **Development**
+
+```bash
+cd zen-task-frontend
+
+# Install dependencies
+bun install  # or npm install
+
+# Start development server
+bun start   # or npm start
+
+# Build for production
+bun run build  # or npm run build
+```
+
+### **Architecture**
+The frontend follows Clean Architecture principles with:
+- **Pages**: Route-level components
+- **Components**: Reusable UI components
+- **Hooks**: Custom hooks for business logic and API integration
+- **Services**: API client and authentication
+- **Types**: TypeScript definitions
+
+For detailed frontend documentation, see [zen-task-frontend/README.md](./zen-task-frontend/README.md)
