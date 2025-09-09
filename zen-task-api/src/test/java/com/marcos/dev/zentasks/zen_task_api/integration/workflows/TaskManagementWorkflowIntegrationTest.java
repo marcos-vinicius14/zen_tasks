@@ -84,7 +84,6 @@ class TaskManagementWorkflowIntegrationTest {
 
         // Create UserModel for repository checks
         testUser = UserFactory.create("task_user", "tasks@example.com", "taskPassword123", UserRole.USER);
-        testUser = userRepository.save(testUser);
     }
 
     @Test
@@ -129,10 +128,10 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         // Execute task creation for all quadrants
-        MvcResult doNowResult = createTaskViaAPI(doNowTask);
-        MvcResult scheduleResult = createTaskViaAPI(scheduleTask);
-        MvcResult delegateResult = createTaskViaAPI(delegateTask);
-        MvcResult eliminateResult = createTaskViaAPI(eliminateTask);
+        MvcResult doNowResult = createTaskViaAPI(doNowTask, authToken);
+        MvcResult scheduleResult = createTaskViaAPI(scheduleTask, authToken);
+        MvcResult delegateResult = createTaskViaAPI(delegateTask, authToken);
+        MvcResult eliminateResult = createTaskViaAPI(eliminateTask, authToken);
 
         // Verify all tasks were created successfully
         Long doNowTaskId = extractTaskIdFromResponse(doNowResult);
@@ -210,10 +209,10 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         // Create all tasks
-        createTaskViaAPI(todayTask);
-        createTaskViaAPI(tomorrowTask);
-        createTaskViaAPI(nextWeekTask);
-        createTaskViaAPI(nextMonthTask);
+        createTaskViaAPI(todayTask, authToken);
+        createTaskViaAPI(tomorrowTask, authToken);
+        createTaskViaAPI(nextWeekTask, authToken);
+        createTaskViaAPI(nextMonthTask, authToken);
 
         // Verify all tasks were created
         var savedTasks = taskRepository.findByUser(testUser);
@@ -269,9 +268,9 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         // Create tasks in rapid succession
-        MvcResult result1 = createTaskViaAPI(task1);
-        MvcResult result2 = createTaskViaAPI(task2);
-        MvcResult result3 = createTaskViaAPI(task3);
+        MvcResult result1 = createTaskViaAPI(task1, authToken);
+        MvcResult result2 = createTaskViaAPI(task2, authToken);
+        MvcResult result3 = createTaskViaAPI(task3, authToken);
 
         // Verify all tasks have unique IDs
         Long taskId1 = extractTaskIdFromResponse(result1);
@@ -347,8 +346,8 @@ class TaskManagementWorkflowIntegrationTest {
         // For this test, we're testing the workflow but the authentication aspect
         // is handled by the security context in the service layer
 
-        MvcResult task1Result = createTaskViaAPI(userTask1);
-        MvcResult task2Result = createTaskViaAPI(userTask2);
+        MvcResult task1Result = createTaskViaAPI(userTask1, newUserToken);
+        MvcResult task2Result = createTaskViaAPI(userTask2, newUserToken);
 
         // Verify tasks were created
         assertThat(extractTaskIdFromResponse(task1Result)).isNotNull();
@@ -374,6 +373,7 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         mockMvc.perform(post("/v1/tasks")
+                .header("Authorization", "Bearer " + authToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(pastDueTask)))
                 .andExpect(status().isBadRequest());
@@ -388,6 +388,7 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         mockMvc.perform(post("/v1/tasks")
+                .header("Authorization", "Bearer " + authToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(emptyTitleTask)))
                 .andExpect(status().isBadRequest());
@@ -402,6 +403,7 @@ class TaskManagementWorkflowIntegrationTest {
         );
 
         mockMvc.perform(post("/v1/tasks")
+                .header("Authorization", "Bearer " + authToken)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(nullTitleTask)))
                 .andExpect(status().isBadRequest());
@@ -411,8 +413,9 @@ class TaskManagementWorkflowIntegrationTest {
         assertThat(userTasks).isEmpty(); // No tasks should be created due to validation failures
     }
 
-    private MvcResult createTaskViaAPI(CreateTaskDTO taskDTO) throws Exception {
+    private MvcResult createTaskViaAPI(CreateTaskDTO taskDTO, String token) throws Exception {
         return mockMvc.perform(post("/v1/tasks")
+                .header("Authorization", "Bearer " + token)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(taskDTO)))
                 .andExpect(status().isCreated())

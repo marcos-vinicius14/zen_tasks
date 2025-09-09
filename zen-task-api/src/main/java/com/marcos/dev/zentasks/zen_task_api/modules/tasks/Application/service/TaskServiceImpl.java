@@ -8,6 +8,7 @@ import com.marcos.dev.zentasks.zen_task_api.common.domain.security.annotations.R
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.AuthenticatedUserService;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
@@ -76,8 +77,21 @@ public class TaskServiceImpl implements TaskService {
     taskRepository.save(taskToUpdate);
   }
 
+  @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para modificar uma tarefa")
-  public void moveQuadrant(Quadrant targeQuadrant) {
+  @Override
+  public void moveQuadrant(MoveQuadrantDTO newQuadrantDTO) {
 
+    UserModel currentUser = (UserModel) authenticatedUserService
+      .getCurrentAuthentication()
+      .getPrincipal();
+
+    
+    TaskModel taskToUpdateQuadrant = taskRepository.findByIdAndUser(newQuadrantDTO.taskId(), currentUser)
+    .orElseThrow(() -> new ResourceNotFoundException("Tarefa não existe!"));
+
+    taskToUpdateQuadrant.moveTo(newQuadrantDTO.newQuadrant());
+
+    taskRepository.save(taskToUpdateQuadrant);
   }
 }
