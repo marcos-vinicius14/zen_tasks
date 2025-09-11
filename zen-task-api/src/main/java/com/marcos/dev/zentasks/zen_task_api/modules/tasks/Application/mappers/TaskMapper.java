@@ -2,8 +2,6 @@ package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers;
 
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
@@ -54,60 +52,4 @@ public class TaskMapper {
         entity.getStatus());
   }
 
-  /**
-   * Updates an existing TaskModel entity with data from an UpdateTaskDTO.
-   * Only non-null fields in the DTO will be used to update the entity.
-   *
-   * @param dto    The DTO containing the fields to be updated.
-   * @param entity The original TaskModel entity to be modified.
-   * @return true if any changes were made, false otherwise
-   */
-  public boolean updateEntityFromDTO(UpdateTaskDTO dto, TaskModel entity) {
-    logger.debug("Updating TaskModel from UpdateTaskDTO: {}", entity.getTitle());
-
-    boolean hasBasicChanges = updateBasicDetails(dto, entity);
-    boolean hasStatusChanges = updateCompletionStatus(dto, entity);
-
-    return hasBasicChanges || hasStatusChanges;
-  }
-
-  private boolean updateBasicDetails(UpdateTaskDTO dto, TaskModel entity) {
-    String newTitle = dto.title() != null ? dto.title() : entity.getTitle();
-    String newDescription = dto.description() != null ? dto.description() : entity.getDescription();
-    var newDueDate = dto.dueDate() != null ? dto.dueDate() : entity.getDueDate();
-
-    if (!newTitle.equals(entity.getTitle()) ||
-        !newDescription.equals(entity.getDescription()) ||
-        !newDueDate.equals(entity.getDueDate())) {
-
-      return entity.updateDetails(newTitle, newDescription, newDueDate);
-    }
-
-    if (shouldUpdatePriority(dto, entity)) {
-      boolean isUrgent = dto.isUrgent() != null ? dto.isUrgent() : entity.isUrgent();
-      boolean isImportant = dto.isImportant() != null ? dto.isImportant() : entity.isImportant();
-      entity.setPriority(isUrgent, isImportant);
-      return true;
-    }
-
-    return false;
-  }
-
-  private boolean shouldUpdatePriority(UpdateTaskDTO dto, TaskModel entity) {
-    return (dto.isUrgent() != null && dto.isUrgent() != entity.isUrgent()) ||
-        (dto.isImportant() != null && dto.isImportant() != entity.isImportant());
-  }
-
-  private boolean updateCompletionStatus(UpdateTaskDTO dto, TaskModel entity) {
-    if (dto.isCompleted() == null) {
-      return false;
-    }
-
-    if (dto.isCompleted() != entity.isCompleted()) {
-      entity.updateStatus(dto.isCompleted() ? TaskStatus.DONE : TaskStatus.IN_PROGRESS);
-      return true;
-    }
-
-    return false;
-  }
 }

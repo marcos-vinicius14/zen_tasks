@@ -244,7 +244,7 @@ class TaskModelTest {
     LocalDate newDueDate = LocalDate.now().plusDays(5);
 
     // When
-    boolean wasUpdated = task.updateDetails("New Title", "New Description", newDueDate);
+    boolean wasUpdated = task.updateDetails("New Title", "New Description", newDueDate, mockUser);
 
     // Then
     assertThat(wasUpdated).isTrue();
@@ -265,7 +265,7 @@ class TaskModelTest {
         .build();
 
     // When
-    boolean wasUpdated = task.updateDetails("Title", "Description", dueDate);
+    boolean wasUpdated = task.updateDetails("Title", "Description", dueDate, mockUser);
 
     // Then
     assertThat(wasUpdated).isFalse();
@@ -363,17 +363,17 @@ class TaskModelTest {
         .build();
 
     // When & Then - título nulo
-    assertThatThrownBy(() -> task.updateDetails(null, "Description", LocalDate.now().plusDays(2)))
+    assertThatThrownBy(() -> task.updateDetails(null, "Description", LocalDate.now().plusDays(2), mockUser))
         .isInstanceOf(BusinessRuleException.class)
         .hasMessage("Task title cannot be null or empty");
 
     // When & Then - descrição nula
-    assertThatThrownBy(() -> task.updateDetails("Title", null, LocalDate.now().plusDays(2)))
+    assertThatThrownBy(() -> task.updateDetails("Title", null, LocalDate.now().plusDays(2), mockUser))
         .isInstanceOf(BusinessRuleException.class)
         .hasMessage("Task description cannot be null or empty");
 
     // When & Then - data no passado
-    assertThatThrownBy(() -> task.updateDetails("Title", "Description", LocalDate.now().minusDays(1)))
+    assertThatThrownBy(() -> task.updateDetails("Title", "Description", LocalDate.now().minusDays(1), mockUser))
         .isInstanceOf(BusinessRuleException.class)
         .hasMessage("Due date cannot be in the past");
   }

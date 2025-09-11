@@ -93,7 +93,8 @@ public class TaskModel {
   private TaskModel() {
   }
 
-  public static TaskBuilder builder() {
+
+    public static TaskBuilder builder() {
     return new TaskBuilder();
   }
 

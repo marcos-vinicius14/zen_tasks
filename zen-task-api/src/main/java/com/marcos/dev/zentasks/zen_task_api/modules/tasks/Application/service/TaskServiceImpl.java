@@ -8,10 +8,10 @@ import com.marcos.dev.zentasks.zen_task_api.common.domain.security.annotations.R
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.AuthenticatedUserService;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
@@ -59,8 +59,8 @@ public class TaskServiceImpl implements TaskService {
   @Override
   @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para atualizar uma nova tarefa.")
-  public void editTask(UpdateTaskDTO data) {
-    TaskModel taskToUpdate = taskRepository.findById(data.taskId())
+  public void editTask(Long id, UpdateTaskDTO data) {
+    TaskModel taskToUpdate = taskRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontada"));
 
     UserModel currentUser = (UserModel) authenticatedUserService
@@ -76,8 +76,15 @@ public class TaskServiceImpl implements TaskService {
     taskRepository.save(taskToUpdate);
   }
 
+  @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para modificar uma tarefa")
-  public void moveQuadrant(Quadrant targeQuadrant) {
+  @Override
+  public void moveQuadrant(Long id, MoveQuadrantDTO newQuadrantDTO) {
+    TaskModel taskToUpdateQuadrant = taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tarefa não existe!"));
 
+    taskToUpdateQuadrant.moveTo(newQuadrantDTO.newQuadrant());
+
+    taskRepository.save(taskToUpdateQuadrant);
   }
 }
