@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserServiceInterface {
     logger.info("Iniciando tentativa de autenticação para {}", dto.username());
 
     if (dto.username().isBlank() || dto.password().isBlank()) {
-      logger.warn("Erro na autenticação. Campos de login vazaios para {}", dto.username());
+      logger.warn("Erro na autenticação. Campos de login vazios para {}", dto.username());
       throw new InvalidInputException("Nome de usuário ou senha não podem estar vazios");
     }
 
