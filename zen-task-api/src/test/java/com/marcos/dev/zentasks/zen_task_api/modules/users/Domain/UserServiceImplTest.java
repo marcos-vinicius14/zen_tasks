@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.apache.coyote.BadRequestException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -169,7 +169,7 @@ class UserServiceImplTest {
   void userAuthentication_WhenUsernameIsBlank_ShouldThrowBadRequestException() {
     AuthenticationDTO authDTO = new AuthenticationDTO("", "password123");
 
-    assertThrows(BadRequestException.class, () -> {
+    assertThrows(InvalidInputException.class, () -> {
       userService.userAuthentication(authDTO);
     });
   }

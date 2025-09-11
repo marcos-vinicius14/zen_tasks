@@ -12,7 +12,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQ
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
@@ -60,8 +59,8 @@ public class TaskServiceImpl implements TaskService {
   @Override
   @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para atualizar uma nova tarefa.")
-  public void editTask(UpdateTaskDTO data) {
-    TaskModel taskToUpdate = taskRepository.findById(data.taskId())
+  public void editTask(Long id, UpdateTaskDTO data) {
+    TaskModel taskToUpdate = taskRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontada"));
 
     UserModel currentUser = (UserModel) authenticatedUserService
@@ -80,15 +79,9 @@ public class TaskServiceImpl implements TaskService {
   @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para modificar uma tarefa")
   @Override
-  public void moveQuadrant(MoveQuadrantDTO newQuadrantDTO) {
-
-    UserModel currentUser = (UserModel) authenticatedUserService
-      .getCurrentAuthentication()
-      .getPrincipal();
-
-    
-    TaskModel taskToUpdateQuadrant = taskRepository.findByIdAndUser(newQuadrantDTO.taskId(), currentUser)
-    .orElseThrow(() -> new ResourceNotFoundException("Tarefa não existe!"));
+  public void moveQuadrant(Long id, MoveQuadrantDTO newQuadrantDTO) {
+    TaskModel taskToUpdateQuadrant = taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tarefa não existe!"));
 
     taskToUpdateQuadrant.moveTo(newQuadrantDTO.newQuadrant());
 

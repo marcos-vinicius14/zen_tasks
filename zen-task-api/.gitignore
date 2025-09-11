@@ -21,7 +21,7 @@ target/
 
 .env
 .env.db
-
+/logs/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

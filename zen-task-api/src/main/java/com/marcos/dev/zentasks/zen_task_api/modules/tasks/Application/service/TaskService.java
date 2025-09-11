@@ -8,7 +8,7 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.Updat
 public interface TaskService {
   TaskResponseDTO createNewTask(CreateTaskDTO data);
 
-  void editTask(UpdateTaskDTO data);
-  void moveQuadrant(MoveQuadrantDTO newQuadrant);
+  void editTask(Long id, UpdateTaskDTO data);
+  void moveQuadrant(Long id, MoveQuadrantDTO newQuadrant);
 
 }

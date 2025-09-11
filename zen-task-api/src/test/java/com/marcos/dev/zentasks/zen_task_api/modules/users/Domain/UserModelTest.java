@@ -59,7 +59,7 @@ class UserModelTest {
       userModel.changePassword(wrongCurrentPassword, newPassword);
     });
 
-    assertThat(exception.getMessage()).isEqualTo("A senha atual esta incorreta");
+    assertThat(exception.getMessage()).isEqualTo("A senha atual está incorreta");
   }
 
   @Test

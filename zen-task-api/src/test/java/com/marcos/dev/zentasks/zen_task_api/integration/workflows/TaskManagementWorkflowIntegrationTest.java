@@ -83,7 +83,7 @@ class TaskManagementWorkflowIntegrationTest {
         authToken = authJson.get("token").asText();
 
         // Create UserModel for repository checks
-        testUser = UserFactory.create("task_user", "tasks@example.com", "taskPassword123", UserRole.USER);
+        testUser = (UserModel) userRepository.findByUsername("task_user").orElseThrow();
     }
 
     @Test

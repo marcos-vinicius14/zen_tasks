@@ -3,7 +3,7 @@ package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.apache.coyote.BadRequestException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -178,7 +178,7 @@ class UserServiceIntegrationTest {
 
         // When & Then
         assertThatThrownBy(() -> userService.userAuthentication(authDTO))
-            .isInstanceOf(BadRequestException.class);
+            .isInstanceOf(InvalidInputException.class);
     }
 
     @Test

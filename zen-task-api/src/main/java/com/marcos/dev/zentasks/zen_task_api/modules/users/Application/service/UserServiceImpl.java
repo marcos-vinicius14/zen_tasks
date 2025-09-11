@@ -1,6 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service;
 
-import org.apache.coyote.BadRequestException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -67,13 +67,13 @@ public class UserServiceImpl implements UserServiceInterface {
   }
 
   @Override
-  public AuthenticationResultDTO userAuthentication(AuthenticationDTO dto) throws BadRequestException {
+  public AuthenticationResultDTO userAuthentication(AuthenticationDTO dto) {
 
     logger.info("Iniciando tentativa de autenticação para {}", dto.username());
 
     if (dto.username().isBlank() || dto.password().isBlank()) {
       logger.warn("Erro na autenticação. Campos de login vazaios para {}", dto.username());
-      throw new BadRequestException("Nome de usuário ou senha não podem estar vazios");
+      throw new InvalidInputException("Nome de usuário ou senha não podem estar vazios");
     }
 
     if (!userRepository.existsByUsername(dto.username())) {
