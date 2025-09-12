@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.DashboardTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
@@ -72,7 +73,14 @@ public class TaskController {
   }
 
   @GetMapping
-  public ResponseEntity<TaskResponseDTO> getTaskById(@PathVariable Long id) {
-    return null;
+  public ResponseEntity<DashboardTaskDTO> getDashboardTask() {
+    logger.info("[TASKCONTROLLER] Recebida a requisição para obter as tarefas do dashboard");
+
+    DashboardTaskDTO result = taskService.getDashboardTasks();
+
+    logger.info("[TASKCONTROLLER] Tarefas do dashboard obtidas com sucesso");
+
+    return ResponseEntity.ok(result);
   }
+
 }
