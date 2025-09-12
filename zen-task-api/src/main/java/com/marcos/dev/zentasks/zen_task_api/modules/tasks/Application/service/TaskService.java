@@ -5,6 +5,7 @@ import java.util.List;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.DashboardTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskFilterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 
@@ -17,6 +18,6 @@ public interface TaskService {
 
   DashboardTaskDTO getDashboardTasks();
 
-  List<TaskResponseDTO> findTasksByFilter();
+  List<TaskResponseDTO> findTasksByFilter(TaskFilterDTO paramsFilter);
 
 }

@@ -13,6 +13,7 @@ import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.Auth
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.DashboardTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskFilterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
@@ -133,5 +134,38 @@ public class TaskServiceImpl implements TaskService {
 
     return new DashboardTaskDTO(overdueTasksDtos, todayTasksDtos, doNowTasksDtos);
 
+  }
+
+  @Override
+  @RequireAuthentication(message = "Você deve estar autenticado para visualizar as tarefas")
+  @Transactional(readOnly = true)
+  public List<TaskResponseDTO> findTasksByFilter(TaskFilterDTO filter) {
+    UserModel currentUser = (UserModel) authenticatedUserService
+        .getCurrentAuthentication()
+        .getPrincipal();
+
+    TaskRepository.Specifications.SpecificationBuilder specBuilder = TaskRepository.Specifications.builder()
+        .forUser(currentUser);
+
+    if (filter.quadrant() != null) {
+      specBuilder.inQuadrant(filter.quadrant());
+    }
+
+    if (filter.status() != null) {
+      specBuilder.withStatus(filter.status());
+    }
+
+    if (filter.fromDate() != null && filter.toDate() != null) {
+      specBuilder.dueDateBetween(filter.fromDate(), filter.toDate());
+    }
+
+    if (filter.isComplete() != null) {
+      specBuilder.isCompleted(filter.isComplete());
+    }
+
+    Specification<TaskModel> spec = specBuilder.build();
+    List<TaskModel> tasks = taskRepository.findAll(spec);
+
+    return taskMapper.toResponseDTOList(tasks);
   }
 }
