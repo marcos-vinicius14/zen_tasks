@@ -108,7 +108,7 @@ public class TaskServiceImpl implements TaskService {
 
     Specification<TaskModel> overdueSpec = TaskRepository.Specifications.builder()
         .forUser(currentUser)
-        .dueDateBetween(null, LocalDate.now().minusDays(1))
+        .dueDateBetween(LocalDate.MIN, LocalDate.now().minusDays(1))
         .isCompleted(false)
         .build();
 
