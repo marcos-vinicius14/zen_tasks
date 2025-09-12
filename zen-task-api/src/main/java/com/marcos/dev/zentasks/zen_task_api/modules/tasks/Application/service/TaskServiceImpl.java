@@ -22,7 +22,8 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.reposit
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
+
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -95,6 +96,7 @@ public class TaskServiceImpl implements TaskService {
 
   @Override
   @RequireAuthentication(message = "Você deve estar autenticado para visualizar as tarefas")
+  @Transactional(readOnly = true)
   public DashboardTaskDTO getDashboardTasks() {
 
     UserModel currentUser = (UserModel) authenticatedUserService

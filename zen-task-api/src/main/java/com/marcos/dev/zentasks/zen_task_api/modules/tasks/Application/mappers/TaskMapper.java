@@ -1,7 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
