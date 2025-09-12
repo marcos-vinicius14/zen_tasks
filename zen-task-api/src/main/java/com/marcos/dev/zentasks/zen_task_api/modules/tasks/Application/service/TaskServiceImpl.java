@@ -2,12 +2,16 @@ package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.marcos.dev.zentasks.zen_task_api.common.domain.security.annotations.RequireAuthentication;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.BusinessRuleException;
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.common.infraestructure.security.AuthenticatedUserService;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
@@ -23,8 +27,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.reposit
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
 import jakarta.persistence.EntityManager;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -168,4 +170,33 @@ public class TaskServiceImpl implements TaskService {
 
     return taskMapper.toResponseDTOList(tasks);
   }
+
+  @Override
+  @RequireAuthentication(message = "Você deve estar autenticado para visualizar as tarefas")
+  @Transactional(readOnly = true)
+  public Map<LocalDate, List<TaskResponseDTO>> getWeeklyView(LocalDate weekStartDate) {
+
+    UserModel currentUser = (UserModel) authenticatedUserService
+        .getCurrentAuthentication()
+        .getPrincipal();
+
+    if (weekStartDate == null) {
+      throw new BusinessRuleException("A data de início da semana não pode ser nula");
+    }
+
+    LocalDate weekEndDate = weekStartDate.plusDays(6);
+
+    Specification<TaskModel> spec = TaskRepository.Specifications.builder()
+        .forUser(currentUser)
+        .dueDateBetween(weekStartDate, weekEndDate)
+        .build();
+
+    List<TaskModel> tasksInWeek = taskRepository.findAll(spec);
+    List<TaskResponseDTO> responseDTOs = taskMapper.toResponseDTOList(tasksInWeek);
+
+    return responseDTOs.stream()
+        .collect(Collectors.groupingBy(TaskResponseDTO::dueDate));
+
+  }
+
 }
