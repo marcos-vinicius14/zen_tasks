@@ -11,7 +11,7 @@ public record UpdateTaskDTO(
 
     @Size(min = 3, max = 1000, message = "A descrição deve ter entre 3 e 1000 caracteres.") String description,
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @FutureOrPresent(message = "A data de término deve ser hoje ou uma data futura.")
     LocalDate dueDate,
 

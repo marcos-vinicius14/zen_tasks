@@ -1,13 +1,16 @@
 package com.marcos.dev.zentasks.zen_task_api.common.exceptions;
 
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.ErrorResponseDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.ValidationErrorResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.common.dtos.ErrorResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.common.dtos.ValidationErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Captura exceções lançadas pelos controllers de forma global
@@ -188,5 +191,23 @@ public class RestExceptionHandler {
                 errorResponseDTO,
                 HttpStatus.BAD_REQUEST
         );
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationErrorResponseDTO> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        
+        ex.getBindingResult().getFieldErrors().forEach(error -> 
+            errors.put(error.getField(), error.getDefaultMessage()));
+        
+        ValidationErrorResponseDTO errorResponseDTO = new ValidationErrorResponseDTO(
+                HttpStatus.BAD_REQUEST.value(),
+                "Erro de validação",
+                "Dados de entrada inválidos",
+                LocalDateTime.now(),
+                errors
+        );
+
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
     }
 }

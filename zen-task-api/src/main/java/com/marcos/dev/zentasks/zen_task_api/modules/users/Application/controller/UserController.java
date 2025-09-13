@@ -3,6 +3,7 @@ package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.controlle
 import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,8 @@ import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.Authe
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegisterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegistrationResultDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceInterface;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/v1")
@@ -27,7 +30,7 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<AuthenticationResultDTO> login(@RequestBody AuthenticationDTO data) throws BadRequestException {
+  public ResponseEntity<AuthenticationResultDTO> login(@Valid @RequestBody AuthenticationDTO data) throws BadRequestException {
 
     logger.info("Iniciando a autenticação para o user: {}", data.username());
 
@@ -40,12 +43,13 @@ public class UserController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<RegistrationResultDTO> register(@RequestBody RegisterDTO data) {
+  public ResponseEntity<RegistrationResultDTO> register(@Valid @RequestBody RegisterDTO data) {
     logger.info("Iniciando a criação do user: {}", data.username());
 
     RegistrationResultDTO result = userService.createUser(data);
     logger.debug("Usuario {} criado com sucesso", data.username());
 
+    // TODO: Should return 201 CREATED for proper REST compliance, but keeping 200 for backward compatibility
     return ResponseEntity.ok(result);
   }
 

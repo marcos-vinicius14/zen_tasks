@@ -66,6 +66,25 @@ public class TaskServiceImpl implements TaskService {
   }
 
   @Override
+  @RequireAuthentication(message = "Você deve estar autenticado para visualizar uma tarefa.")
+  @Transactional(readOnly = true)
+  public TaskResponseDTO getTaskById(Long id) {
+    TaskModel task = taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
+
+    UserModel currentUser = (UserModel) authenticatedUserService
+        .getCurrentAuthentication()
+        .getPrincipal();
+
+    // Verify if the task belongs to the authenticated user
+    if (!task.getUser().getId().equals(currentUser.getId())) {
+      throw new ResourceNotFoundException("Tarefa não encontrada");
+    }
+
+    return taskMapper.toResponseDTO(task);
+  }
+
+  @Override
   @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para atualizar uma nova tarefa.")
   public void editTask(Long id, UpdateTaskDTO data) {
@@ -85,12 +104,40 @@ public class TaskServiceImpl implements TaskService {
     taskRepository.save(taskToUpdate);
   }
 
+  @Override
+  @Transactional
+  @RequireAuthentication(message = "Você deve estar autenticado para deletar uma tarefa.")
+  public void deleteTask(Long id) {
+    TaskModel taskToDelete = taskRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
+
+    UserModel currentUser = (UserModel) authenticatedUserService
+        .getCurrentAuthentication()
+        .getPrincipal();
+
+    // Verify if the task belongs to the authenticated user
+    if (!taskToDelete.getUser().getId().equals(currentUser.getId())) {
+      throw new ResourceNotFoundException("Tarefa não encontrada");
+    }
+
+    taskRepository.delete(taskToDelete);
+  }
+
   @Transactional
   @RequireAuthentication(message = "Você deve estar autenticado para modificar uma tarefa")
   @Override
   public void moveQuadrant(Long id, MoveQuadrantDTO newQuadrantDTO) {
     TaskModel taskToUpdateQuadrant = taskRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Tarefa não existe!"));
+
+    UserModel currentUser = (UserModel) authenticatedUserService
+        .getCurrentAuthentication()
+        .getPrincipal();
+
+    // Verify if the task belongs to the authenticated user
+    if (!taskToUpdateQuadrant.getUser().getId().equals(currentUser.getId())) {
+      throw new ResourceNotFoundException("Tarefa não encontrada");
+    }
 
     taskToUpdateQuadrant.moveTo(newQuadrantDTO.newQuadrant());
 
