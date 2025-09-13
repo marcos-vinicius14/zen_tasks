@@ -69,7 +69,6 @@ class TaskServiceImplTest {
         TaskStatus.CREATED,
         Quadrant.DO_NOW,
         false
-
     );
 
     when(authenticatedUserService.getCurrentUserId())
