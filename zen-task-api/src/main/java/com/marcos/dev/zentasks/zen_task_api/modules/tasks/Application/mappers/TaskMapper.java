@@ -1,13 +1,16 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers;
 
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
+import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
 /**
  * Component responsible for mapping objects between DTO and Model layers.
@@ -49,7 +52,22 @@ public class TaskMapper {
         entity.getId(),
         entity.getTitle(),
         entity.getDescription(),
-        entity.getStatus());
+        entity.getDueDate(),
+        entity.getStatus(),
+        entity.getQuadrant(),
+        entity.isCompleted());
+  }
+
+  public List<TaskResponseDTO> toResponseDTOList(List<TaskModel> entities) {
+    logger.debug("Converting List<TaskModel> to List<TaskResponseDTO>");
+
+    if (entities == null) {
+      return List.of();
+    }
+
+    return entities.stream()
+        .map(this::toResponseDTO)
+        .collect(Collectors.toList());
   }
 
 }
