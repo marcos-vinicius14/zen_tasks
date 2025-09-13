@@ -1,4 +1,4 @@
-package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos;
+package com.marcos.dev.zentasks.zen_task_api.common.dtos;
 
 import java.time.LocalDateTime;
 import java.util.Map;

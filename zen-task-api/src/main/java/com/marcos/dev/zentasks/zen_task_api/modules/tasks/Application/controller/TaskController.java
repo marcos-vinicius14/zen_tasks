@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,17 @@ public class TaskController {
     logger.debug("[TASKCONTROLLER] Tarefa {} criada com sucesso", createdTask.title());
 
     return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<TaskResponseDTO> getTaskById(@PathVariable Long id) {
+    logger.info("[TASKCONTROLLER] Recebida a requisição para obter tarefa ID: {}", id);
+
+    TaskResponseDTO task = taskService.getTaskById(id);
+
+    logger.debug("[TASKCONTROLLER] Tarefa {} obtida com sucesso", task.title());
+
+    return ResponseEntity.ok(task);
   }
 
   @PatchMapping("/{id}")
@@ -112,6 +124,17 @@ public class TaskController {
 
     return ResponseEntity.ok(result);
 
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+    logger.info("[TASKCONTROLLER] Recebida a requisição para deletar tarefa ID: {}", id);
+
+    taskService.deleteTask(id);
+
+    logger.debug("[TASKCONTROLLER] Tarefa {} deletada com sucesso", id);
+
+    return ResponseEntity.noContent().build();
   }
 
 }
