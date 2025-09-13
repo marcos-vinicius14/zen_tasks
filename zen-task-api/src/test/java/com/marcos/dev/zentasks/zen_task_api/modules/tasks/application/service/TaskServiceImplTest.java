@@ -22,6 +22,7 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.Creat
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.mappers.TaskMapper;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service.TaskServiceImpl;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
@@ -64,7 +65,11 @@ class TaskServiceImplTest {
         1L,
         "Implementar feature X",
         "Descrição detalhada da feature",
-        TaskStatus.CREATED);
+        LocalDate.now().plusDays(7),
+        TaskStatus.CREATED,
+        Quadrant.DO_NOW,
+        false
+    );
 
     when(authenticatedUserService.getCurrentUserId())
         .thenReturn(userId);

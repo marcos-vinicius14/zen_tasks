@@ -1,7 +1,12 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.DashboardTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.MoveQuadrantDTO;
+import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskFilterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.UpdateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service.TaskService;
@@ -71,8 +79,39 @@ public class TaskController {
         .build();
   }
 
-  @GetMapping
-  public ResponseEntity<TaskResponseDTO> getTaskById(@PathVariable Long id) {
-    return null;
+  @GetMapping("/dashboard")
+  public ResponseEntity<DashboardTaskDTO> getDashboardTask() {
+    logger.info("[TASKCONTROLLER] Recebida a requisição para obter as tarefas do dashboard");
+
+    DashboardTaskDTO result = taskService.getDashboardTasks();
+
+    logger.info("[TASKCONTROLLER] Tarefas do dashboard obtidas com sucesso");
+
+    return ResponseEntity.ok(result);
   }
+
+  @GetMapping
+  public ResponseEntity<List<TaskResponseDTO>> findTasksByFilter(TaskFilterDTO filter) {
+    logger.info("[TASKCONTROLLER] Recebida a requisição para obter as tarefas por filtro");
+
+    List<TaskResponseDTO> result = taskService.findTasksByFilter(filter);
+
+    logger.info("[TASKCONTROLLER] Tarefas obtidas com sucesso");
+
+    return ResponseEntity.ok(result);
+
+  }
+
+  @GetMapping("/weekly/{weekStartDate}")
+  public ResponseEntity<Map<LocalDate, List<TaskResponseDTO>>> getWeeklyView(
+      @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate weekStartDate) {
+
+    logger.info("[TASKCONTROLLER] Recebida a requisição para obter a visão semanal das tarefas");
+
+    Map<LocalDate, List<TaskResponseDTO>> result = taskService.getWeeklyView(weekStartDate);
+
+    return ResponseEntity.ok(result);
+
+  }
+
 }
