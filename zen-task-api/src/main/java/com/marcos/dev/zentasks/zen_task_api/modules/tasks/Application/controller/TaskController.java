@@ -104,7 +104,7 @@ public class TaskController {
 
   @GetMapping("/weekly/{weekStartDate}")
   public ResponseEntity<Map<LocalDate, List<TaskResponseDTO>>> getWeeklyView(
-      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate weekStartDate) {
+      @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate weekStartDate) {
 
     logger.info("[TASKCONTROLLER] Recebida a requisição para obter a visão semanal das tarefas");
 
