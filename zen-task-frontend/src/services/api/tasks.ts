@@ -1,10 +1,6 @@
 import { apiClient } from './client';
 import { API_ENDPOINTS } from '../../constants';
-import {
-  Task,
-  CreateTaskRequest,
-  UpdateTaskRequest,
-} from '../../types';
+import { Task, CreateTaskRequest, UpdateTaskRequest } from '../../types';
 
 export const tasksApi = {
   getTasks: async (): Promise<Task[]> => {
@@ -19,7 +15,10 @@ export const tasksApi = {
     return apiClient.post<Task>(API_ENDPOINTS.TASKS.BASE, taskData);
   },
 
-  updateTask: async (id: string, taskData: UpdateTaskRequest): Promise<Task> => {
+  updateTask: async (
+    id: string,
+    taskData: UpdateTaskRequest
+  ): Promise<Task> => {
     return apiClient.put<Task>(API_ENDPOINTS.TASKS.BY_ID(id), taskData);
   },
 

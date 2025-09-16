@@ -10,9 +10,7 @@ export const HomePage: React.FC = () => {
         <Link to="/login" style={{ marginRight: '10px' }}>
           Login
         </Link>
-        <Link to="/tasks">
-          Tasks
-        </Link>
+        <Link to="/tasks">Tasks</Link>
       </div>
     </div>
   );

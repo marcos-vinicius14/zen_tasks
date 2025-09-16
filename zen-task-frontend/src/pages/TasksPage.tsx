@@ -27,7 +27,9 @@ export const TasksPage: React.FC = () => {
               <p>{task.description}</p>
               <p>Status: {task.status}</p>
               {task.isUrgent && <span style={{ color: 'red' }}>Urgent </span>}
-              {task.isImportant && <span style={{ color: 'blue' }}>Important </span>}
+              {task.isImportant && (
+                <span style={{ color: 'blue' }}>Important </span>
+              )}
             </li>
           ))}
         </ul>
