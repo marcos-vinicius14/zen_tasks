@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTasks } from '../hooks';
+import { useTasks } from '../../hooks/useTasks';
 
 export const TasksPage: React.FC = () => {
   const { data: tasks, isLoading, error } = useTasks();

@@ -1,4 +1,4 @@
-import { InputWrapper, StyledInput, StyledLabel } from "../styles/formInput";
+import { InputWrapper, StyledInput, StyledLabel } from "./style";
 
 interface FormInputProps {
   id: string;

@@ -13,4 +13,4 @@ if (rootElement) {
   );
 } else {
   console.error("Elemento com id 'root' não encontrado no DOM.");
-}
+}''

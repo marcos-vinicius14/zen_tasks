@@ -1,12 +1,10 @@
-import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { LoginPage } from './pages/LoginPage';
-import { TasksPage } from './pages/TasksPage';
+import { HomePage } from './pages/home';
+import { LoginPage } from './pages/login';
+import { TasksPage } from './pages/task';
 
-// Create a new query client instance
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

@@ -35,7 +35,7 @@ services:
   # Frontend
   frontend:
     build:
-      context: ./zen-task-frontend
+      context: ./zen-task-front
       dockerfile: Dockerfile
     ports:
       - "3000:80"

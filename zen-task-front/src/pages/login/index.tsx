@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FormInput } from '../components/formInput';
-import { useLogin } from '../hooks';
+import { FormInput } from '../../components/formInput';
+import { useLogin } from '../../hooks';
 import {
   CardContent,
   ErrorMessage,
@@ -16,18 +16,17 @@ import {
   Subtitle,
   Title,
   Triangle,
-} from '../styles/login';
+} from './styles';
 
 export function LoginPage() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('exemplo@email.com');
   const [password, setPassword] = useState('123456');
 
   const { mutate, isPending, isError, error } = useLogin();
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ username, email, password });
+    mutate({ username, password });
   };
 
   return (
@@ -52,14 +51,6 @@ export function LoginPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Digite seu nome de usuário"
-              />
-              <FormInput
-                id="email"
-                type="email"
-                label="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="seuemail@exemplo.com"
               />
               <FormInput
                 id="password"
