@@ -36,7 +36,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copia os arquivos estáticos gerados no estágio de build para a pasta
 # que o Nginx usa para servir o site.
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expõe a porta 80, que é a porta padrão que o Nginx usa.
 EXPOSE 80
