@@ -1,9 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegisterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceInterface;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
 
 @SpringBootTest
@@ -54,8 +51,7 @@ class UserControllerIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "test_user",
             "test@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
 
         String requestBody = objectMapper.writeValueAsString(registerDTO);
@@ -84,8 +80,7 @@ class UserControllerIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "login_user",
             "login@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         userService.createUser(registerDTO);
 
@@ -113,8 +108,7 @@ class UserControllerIntegrationTest {
         RegisterDTO firstUser = new RegisterDTO(
             "first_user",
             "duplicate@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         userService.createUser(firstUser);
 
@@ -122,8 +116,7 @@ class UserControllerIntegrationTest {
         RegisterDTO secondUser = new RegisterDTO(
             "second_user",
             "duplicate@example.com", // Same email
-            "password456",
-            UserRole.USER
+            "password456"
         );
 
         String requestBody = objectMapper.writeValueAsString(secondUser);
@@ -145,8 +138,7 @@ class UserControllerIntegrationTest {
         RegisterDTO firstUser = new RegisterDTO(
             "duplicate_user",
             "first@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         userService.createUser(firstUser);
 
@@ -154,8 +146,7 @@ class UserControllerIntegrationTest {
         RegisterDTO secondUser = new RegisterDTO(
             "duplicate_user", // Same username
             "second@example.com",
-            "password456",
-            UserRole.USER
+            "password456"
         );
 
         String requestBody = objectMapper.writeValueAsString(secondUser);
@@ -195,8 +186,7 @@ class UserControllerIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "auth_user",
             "auth@example.com",
-            "correctPassword",
-            UserRole.USER
+            "correctPassword"
         );
         userService.createUser(registerDTO);
 
@@ -222,8 +212,7 @@ class UserControllerIntegrationTest {
         RegisterDTO invalidRegisterDTO = new RegisterDTO(
             "test_user",
             "invalid-email-format", // Invalid email
-            "password123",
-            UserRole.USER
+            "password123"
         );
 
         String requestBody = objectMapper.writeValueAsString(invalidRegisterDTO);
@@ -245,8 +234,7 @@ class UserControllerIntegrationTest {
         RegisterDTO invalidRegisterDTO = new RegisterDTO(
             "test_user",
             "test@example.com",
-            "123", // Too short password (< 8 characters)
-            UserRole.USER
+            "123"
         );
 
         String requestBody = objectMapper.writeValueAsString(invalidRegisterDTO);
@@ -266,10 +254,9 @@ class UserControllerIntegrationTest {
     void shouldReturn400ForRegistrationWithShortUsername() throws Exception {
         // Given
         RegisterDTO invalidRegisterDTO = new RegisterDTO(
-            "ab", // Too short username (< 3 characters)
+            "ab",
             "test@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
 
         String requestBody = objectMapper.writeValueAsString(invalidRegisterDTO);
@@ -335,8 +322,7 @@ class UserControllerIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "flow_user",
             "flow@example.com",
-            "flowPassword123",
-            UserRole.USER
+            "flowPassword123"
         );
 
         // Step 1: Register user
@@ -371,8 +357,7 @@ class UserControllerIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "header_test_user",
             "header@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
 
         String requestBody = objectMapper.writeValueAsString(registerDTO);

@@ -1,6 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +18,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.model.TaskModel;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 
@@ -41,14 +40,12 @@ class TaskRepositoryIntegrationTest {
         testUser = UserFactory.create(
             "Test User",
             "test@example.com", 
-            "password123",
-            UserRole.USER
+            "password123"
         );
         anotherUser = UserFactory.create(
             "Another User",
             "another@example.com",
-            "password456", 
-            UserRole.USER
+            "password456"
         );
         
         entityManager.persistAndFlush(testUser);

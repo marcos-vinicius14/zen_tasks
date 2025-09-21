@@ -1,7 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 
@@ -20,7 +19,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.Creat
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.TaskResponseDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.TaskStatus;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
@@ -48,8 +46,7 @@ class TaskServiceIntegrationTest {
         testUser = UserFactory.create(
             "Integration Test User",
             "integration@test.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         testUser = userRepository.save(testUser);
 

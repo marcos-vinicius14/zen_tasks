@@ -1,17 +1,17 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.UserValidationException;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserFactory {
   private static final int MIN_PASSWORD_LENGTH = 8;
   private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
   private static final int MIN_USERNAME_LENGTH = 3;
 
-  public static UserModel create(String username, String email, String password, UserRole role) {
+  public static UserModel create(String username, String email, String password) {
     validateInput(username, email, password);
 
     String passwordHash = new BCryptPasswordEncoder().encode(password);

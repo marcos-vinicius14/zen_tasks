@@ -1,9 +1,8 @@
 package com.marcos.dev.zentasks.zen_task_api.integration.workflows;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.time.LocalDate;
 
@@ -26,8 +25,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Domain.enums.Quadrant;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegisterDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
 
@@ -59,8 +56,7 @@ class TaskManagementWorkflowIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "task_user",
             "tasks@example.com",
-            "taskPassword123",
-            UserRole.USER
+            "taskPassword123"
         );
 
         // Register user
@@ -300,8 +296,7 @@ class TaskManagementWorkflowIntegrationTest {
         RegisterDTO newUserDTO = new RegisterDTO(
             "workflow_test_user",
             "workflow@test.com",
-            "workflowPassword123",
-            UserRole.USER
+            "workflowPassword123"
         );
 
         mockMvc.perform(post("/v1/register")
@@ -310,7 +305,6 @@ class TaskManagementWorkflowIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("workflow_test_user"));
 
-        // Step 2: Authenticate the new user
         AuthenticationDTO newUserAuth = new AuthenticationDTO(
             "workflow_test_user",
             "workflowPassword123"

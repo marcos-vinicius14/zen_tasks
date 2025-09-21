@@ -1,6 +1,6 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Optional;
 
@@ -35,8 +35,7 @@ class UserRepositoryIntegrationTest {
         testUser = UserFactory.create(
             "Test User",
             "test@example.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
     }
 
@@ -107,8 +106,8 @@ class UserRepositoryIntegrationTest {
     @DisplayName("Should handle multiple users with different emails and usernames")
     void shouldHandleMultipleUsersWithDifferentEmailsAndUsernames() {
         // Given
-        UserModel user1 = UserFactory.create("User One", "user1@example.com", "password1", UserRole.USER);
-        UserModel user2 = UserFactory.create("User Two", "user2@example.com", "password2", UserRole.ADMIN);
+        UserModel user1 = UserFactory.create("User One", "user1@example.com", "password1");
+        UserModel user2 = UserFactory.create("User Two", "user2@example.com", "password2");
 
         entityManager.persistAndFlush(user1);
         entityManager.persistAndFlush(user2);
@@ -139,7 +138,7 @@ class UserRepositoryIntegrationTest {
     @DisplayName("Should handle case sensitive username and email queries")
     void shouldHandleCaseSensitiveUsernameAndEmailQueries() {
         // Given
-        UserModel user = UserFactory.create("TestUser", "Test@Example.Com", "password", UserRole.USER);
+        UserModel user = UserFactory.create("TestUser", "Test@Example.Com", "password");
         entityManager.persistAndFlush(user);
 
         // When
@@ -167,12 +166,12 @@ class UserRepositoryIntegrationTest {
     @DisplayName("Should validate unique constraints on email and username")
     void shouldValidateUniqueConstraintsOnEmailAndUsername() {
         // Given
-        UserModel user1 = UserFactory.create("User One", "unique@example.com", "password1", UserRole.USER);
+        UserModel user1 = UserFactory.create("User One", "unique@example.com", "password1");
         entityManager.persistAndFlush(user1);
 
         // When - Try to create users with duplicate email and username
-        UserModel userWithDuplicateEmail = UserFactory.create("Different User", "unique@example.com", "password2", UserRole.USER);
-        UserModel userWithDuplicateUsername = UserFactory.create("User One", "different@example.com", "password3", UserRole.USER);
+        UserModel userWithDuplicateEmail = UserFactory.create("Different User", "unique@example.com", "password2");
+        UserModel userWithDuplicateUsername = UserFactory.create("User One", "different@example.com", "password3");
 
         // Then - The persistence should detect constraint violations
         // Note: In real scenario, this would throw constraint violation exception

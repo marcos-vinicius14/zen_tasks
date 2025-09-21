@@ -1,6 +1,5 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service;
 
-import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,14 +9,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.DataConflictException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationResultDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.ChangePasswordRequest;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegisterDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.RegistrationResultDTO;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.mappers.UserMapper;
+import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
 
@@ -58,8 +58,7 @@ public class UserServiceImpl implements UserServiceInterface {
     UserModel user = UserFactory.create(
         data.username(),
         data.email(),
-        data.password(),
-        data.role());
+        data.password());
 
     userRepository.save(user);
 
