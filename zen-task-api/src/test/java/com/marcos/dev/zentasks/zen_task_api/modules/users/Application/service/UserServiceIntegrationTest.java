@@ -1,9 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
-import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.DataConflictException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationResultDTO;
@@ -46,8 +45,7 @@ class UserServiceIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "integration_user",
             "integration@test.com", 
-            "securePassword123",
-            UserRole.USER
+            "securePassword123"
         );
 
         // When
@@ -73,8 +71,7 @@ class UserServiceIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "auth_test_user",
             "auth@test.com",
-            "testPassword123",
-            UserRole.USER
+            "testPassword123"
         );
         userService.createUser(registerDTO);
 
@@ -101,17 +98,15 @@ class UserServiceIntegrationTest {
         RegisterDTO firstUser = new RegisterDTO(
             "first_user",
             "duplicate@test.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         userService.createUser(firstUser);
 
         // Attempt to register second user with same email
         RegisterDTO secondUser = new RegisterDTO(
             "second_user",
-            "duplicate@test.com", // Same email
-            "password456",
-            UserRole.USER
+            "duplicate@test.com", 
+            "password456"
         );
 
         // When & Then
@@ -130,8 +125,7 @@ class UserServiceIntegrationTest {
         RegisterDTO firstUser = new RegisterDTO(
             "duplicate_username",
             "first@test.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         userService.createUser(firstUser);
 
@@ -139,8 +133,7 @@ class UserServiceIntegrationTest {
         RegisterDTO secondUser = new RegisterDTO(
             "duplicate_username", // Same username
             "second@test.com",
-            "password456",
-            UserRole.USER
+            "password456"
         );
 
         // When & Then
@@ -188,8 +181,7 @@ class UserServiceIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "password_test_user",
             "password@test.com",
-            "correctPassword",
-            UserRole.USER
+            "correctPassword"
         );
         userService.createUser(registerDTO);
 
@@ -211,15 +203,13 @@ class UserServiceIntegrationTest {
         RegisterDTO userDTO = new RegisterDTO(
             "regular_user",
             "user@test.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
 
         RegisterDTO adminDTO = new RegisterDTO(
             "admin_user",
             "admin@test.com",
-            "password123",
-            UserRole.ADMIN
+            "password123"
         );
 
         // When
@@ -242,9 +232,9 @@ class UserServiceIntegrationTest {
     @DisplayName("Should handle multiple user registrations in sequence")
     void shouldHandleMultipleUserRegistrationsInSequence() {
         // Given
-        RegisterDTO user1DTO = new RegisterDTO("user1", "user1@test.com", "password123", UserRole.USER);
-        RegisterDTO user2DTO = new RegisterDTO("user2", "user2@test.com", "password123", UserRole.USER);
-        RegisterDTO user3DTO = new RegisterDTO("user3", "user3@test.com", "password123", UserRole.ADMIN);
+        RegisterDTO user1DTO = new RegisterDTO("user1", "user1@test.com", "password123");
+        RegisterDTO user2DTO = new RegisterDTO("user2", "user2@test.com", "password123");
+        RegisterDTO user3DTO = new RegisterDTO("user3", "user3@test.com", "password123");
 
         // When
         RegistrationResultDTO result1 = userService.createUser(user1DTO);
@@ -273,8 +263,7 @@ class UserServiceIntegrationTest {
         RegisterDTO registerDTO = new RegisterDTO(
             "flow_test_user",
             "flow@test.com",
-            "flowTestPassword123",
-            UserRole.USER
+            "flowTestPassword123"
         );
 
         // When - Registration

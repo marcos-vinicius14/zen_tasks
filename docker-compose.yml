@@ -35,12 +35,12 @@ services:
   # Frontend
   frontend:
     build:
-      context: ./zen-task-frontend
+      context: ./zen-task-front
       dockerfile: Dockerfile
     ports:
       - "3000:80"
     environment:
-      - REACT_APP_API_URL=http://localhost:8080
+      - VITE_API_URL=/api
     depends_on:
       - api
     networks:

@@ -18,7 +18,6 @@ export interface AuthTokens {
 export interface LoginRequest {
   username: string;
   password: string;
-  email: string;
 }
 
 export interface RegisterRequest {

@@ -1,20 +1,12 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.users.Domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.DataConflictException;
+import com.marcos.dev.zentasks.zen_task_api.common.exceptions.InvalidInputException;
 import com.marcos.dev.zentasks.zen_task_api.common.exceptions.ResourceNotFoundException;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.dtos.AuthenticationResultDTO;
@@ -37,7 +30,6 @@ import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.mappers.Us
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.AuthenticationFailedException;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.TokenService;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Application.service.UserServiceImpl;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
@@ -65,12 +57,11 @@ class UserServiceImplTest {
 
   @BeforeEach
   void setUp() {
-    registerDTO = new RegisterDTO("testuser", "test@test.com", "password123", UserRole.USER);
+    registerDTO = new RegisterDTO("testuser", "test@test.com", "password123");
     userModel = UserFactory.create(
         "testes User",
         "test@gmail.com",
-        UUID.randomUUID().toString(),
-        UserRole.USER);
+        UUID.randomUUID().toString());
 
   }
 

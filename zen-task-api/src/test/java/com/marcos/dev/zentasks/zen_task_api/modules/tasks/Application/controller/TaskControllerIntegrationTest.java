@@ -1,9 +1,7 @@
 package com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.time.LocalDate;
 
@@ -23,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Application.dtos.CreateTaskDTO;
 import com.marcos.dev.zentasks.zen_task_api.modules.tasks.Infrastructure.repository.TaskRepository;
-import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.enums.UserRole;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.factories.UserFactory;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Domain.model.UserModel;
 import com.marcos.dev.zentasks.zen_task_api.modules.users.Infrastructure.repository.UserRepository;
@@ -55,12 +52,10 @@ class TaskControllerIntegrationTest {
         testUser = UserFactory.create(
             "Controller Test User",
             "controller@test.com",
-            "password123",
-            UserRole.USER
+            "password123"
         );
         testUser = userRepository.save(testUser);
 
-        // Set up security context for authentication
         UsernamePasswordAuthenticationToken authentication = 
             new UsernamePasswordAuthenticationToken(testUser, null, testUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -188,13 +183,11 @@ class TaskControllerIntegrationTest {
 
         String requestBody = objectMapper.writeValueAsString(createTaskDTO);
 
-        // When & Then
         mockMvc.perform(post("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
                 .andExpect(status().isForbidden());
 
-        // Verify no task was created
         var savedTasks = taskRepository.findByUser(testUser);
         assert savedTasks.isEmpty();
     }
@@ -202,16 +195,13 @@ class TaskControllerIntegrationTest {
     @Test
     @DisplayName("Should return 400 for malformed JSON")
     void shouldReturn400ForMalformedJson() throws Exception {
-        // Given
         String malformedJson = "{ \"title\": \"Test\", \"description\": "; // Incomplete JSON
 
-        // When & Then
         mockMvc.perform(post("/v1/tasks")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(malformedJson))
                 .andExpect(status().isBadRequest());
 
-        // Verify no task was created
         var savedTasks = taskRepository.findByUser(testUser);
         assert savedTasks.isEmpty();
     }
