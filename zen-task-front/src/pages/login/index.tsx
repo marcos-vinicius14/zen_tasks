@@ -1,22 +1,9 @@
+// componente
 import React, { useState } from 'react';
 import { FormInput } from '../../components/formInput';
 import { useLogin } from '../../hooks';
-import {
-  CardContent,
-  ErrorMessage,
-  FooterLink,
-  FooterText,
-  FormTitle,
-  Header,
-  LoginForm,
-  LoginWrapper,
-  MainCard,
-  PageContainer,
-  SubmitButton,
-  Subtitle,
-  Title,
-  Triangle,
-} from './styles';
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './LoginPage.styles'; 
 
 export function LoginPage() {
   const [username, setUsername] = useState('');
@@ -30,20 +17,20 @@ export function LoginPage() {
   };
 
   return (
-    <PageContainer>
-      <LoginWrapper>
-        <Header>
-          <div className="flex items-center space-x-3">
-            <Title>Zen Task</Title>
+    <div {...stylex.props(styles.pageContainer)}>
+      <div {...stylex.props(styles.loginWrapper)}>
+        <div {...stylex.props(styles.header)}>
+          <div {...stylex.props(styles.headerInner)}>
+            <h1 {...stylex.props(styles.title)}>Zen Task</h1>
           </div>
-          <Subtitle>Organize as suas tarefas</Subtitle>
-        </Header>
+          <p {...stylex.props(styles.subtitle)}>Organize as suas tarefas</p>
+        </div>
 
-        <MainCard>
-          <Triangle />
-          <CardContent>
-            <FormTitle>Login</FormTitle>
-            <LoginForm onSubmit={handleLogin}>
+        <div {...stylex.props(styles.mainCard)}>
+          <div {...stylex.props(styles.triangle)} />
+          <div {...stylex.props(styles.cardContent)}>
+            <h2 {...stylex.props(styles.formTitle)}>Login</h2>
+            <form {...stylex.props(styles.loginForm)} onSubmit={handleLogin}>
               <FormInput
                 id="username"
                 type="text"
@@ -62,23 +49,23 @@ export function LoginPage() {
               />
 
               {isError && (
-                <ErrorMessage>
+                <div {...stylex.props(styles.errorMessage)}>
                   {/* @ts-ignore */}
                   {error.message}
-                </ErrorMessage>
+                </div>
               )}
 
-              <SubmitButton type="submit" disabled={isPending}>
+              <button type="submit" disabled={isPending} {...stylex.props(styles.submitButton)}>
                 {isPending ? 'Entrando...' : 'Entrar'}
-              </SubmitButton>
-            </LoginForm>
+              </button>
+            </form>
 
-            <FooterText>
-              Não tem uma conta? <FooterLink href="#">Crie agora</FooterLink>
-            </FooterText>
-          </CardContent>
-        </MainCard>
-      </LoginWrapper>
-    </PageContainer>
+            <p {...stylex.props(styles.footerText)}>
+              Não tem uma conta? <a href="#" {...stylex.props(styles.footerLink)}>Crie agora</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-}
+};

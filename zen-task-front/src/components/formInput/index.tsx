@@ -1,4 +1,7 @@
-import { InputWrapper, StyledInput, StyledLabel } from "./style";
+// componente (FormInput.tsx)
+import React from 'react';
+import * as stylex from '@stylexjs/stylex';
+import { styles } from './FormInput.styles';  // Ajuste o caminho se necessário (remova .ts se for TS)
 
 interface FormInputProps {
   id: string;
@@ -10,16 +13,17 @@ interface FormInputProps {
 }
 
 export const FormInput: React.FC<FormInputProps> = ({ id, type, label, value, onChange, placeholder }) => (
-  <InputWrapper>
-    <StyledLabel htmlFor={id}>
+  <div {...stylex.props(styles.inputWrapper)}>
+    <label htmlFor={id} {...stylex.props(styles.styledLabel)}>
       {label}
-    </StyledLabel>
-    <StyledInput
+    </label>
+    <input
       id={id}
       type={type}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      {...stylex.props(styles.styledInput)}
     />
-  </InputWrapper>
+  </div>
 );
