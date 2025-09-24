@@ -1,29 +1,23 @@
-// componente (FormInput.tsx)
 import React from 'react';
 import * as stylex from '@stylexjs/stylex';
-import { styles } from './FormInput.styles';  // Ajuste o caminho se necessário (remova .ts se for TS)
+import { styles } from './FormInput.styles';
 
-interface FormInputProps {
-  id: string;
-  type: 'text' | 'password' | 'email' | 'number';
+// Definindo as propriedades que o componente aceita
+// Isso permite que o componente receba qualquer propriedade de um input normal (like placeholder, etc)
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  id: string;
 }
 
-export const FormInput: React.FC<FormInputProps> = ({ id, type, label, value, onChange, placeholder }) => (
-  <div {...stylex.props(styles.inputWrapper)}>
-    <label htmlFor={id} {...stylex.props(styles.styledLabel)}>
-      {label}
-    </label>
-    <input
-      id={id}
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      {...stylex.props(styles.styledInput)}
-    />
-  </div>
-);
+export const FormInput: React.FC<FormInputProps> = ({ label, id, ...props }) => {
+  return (
+    // A div principal que aplica os estilos de espaçamento
+    <div {...stylex.props(styles.inputWrapper)}>
+      <label htmlFor={id} {...stylex.props(styles.styledLabel)}>
+        {label}
+      </label>
+      <input id={id} {...stylex.props(styles.styledInput)} {...props} />
+    </div>
+  );
+};
+

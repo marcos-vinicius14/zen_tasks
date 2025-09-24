@@ -1,4 +1,3 @@
-// src/pages/login/tokens.stylex.ts (ou src/styles/tokens.stylex.ts)
 import * as stylex from '@stylexjs/stylex';
 
 export const vars = stylex.defineVars({
@@ -15,4 +14,7 @@ export const vars = stylex.defineVars({
   inputPlaceholder: '#6b7280',
   inputFocusBorder: '#3b82f6',
   inputFocusShadow: '#3b82f6',
+
+  fontTitle: 'Roboto, sans-serif',
+  fontBody: 'Roboto Mono, monospace'
 });
