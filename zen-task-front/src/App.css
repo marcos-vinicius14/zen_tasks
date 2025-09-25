@@ -1,1 +1,7 @@
-@stylex stylesheet;
+@import "tailwindcss";
+
+
+@theme {
+    --color-primary: #2563eb;
+    --color-background: #111827;
+}
