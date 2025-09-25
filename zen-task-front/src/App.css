@@ -1,8 +1,7 @@
-@stylex stylesheet;
+@import "tailwindcss";
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+@theme {
+    --color-primary: #2563eb;
+    --color-background: #111827;
 }
-
