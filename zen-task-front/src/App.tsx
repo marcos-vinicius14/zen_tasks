@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/home';
 import { LoginPage } from './pages/login';
 import { TasksPage } from './pages/task';
+import { RegisterPage } from './pages/register';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} />
