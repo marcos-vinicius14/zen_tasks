@@ -1,29 +1,48 @@
-// componente (FormInput.tsx)
 import React from 'react';
-import * as stylex from '@stylexjs/stylex';
-import { styles } from './FormInput.styles';  // Ajuste o caminho se necessário (remova .ts se for TS)
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-interface FormInputProps {
-  id: string;
-  type: 'text' | 'password' | 'email' | 'number';
-  label: string;
-  value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
 
-export const FormInput: React.FC<FormInputProps> = ({ id, type, label, value, onChange, placeholder }) => (
-  <div {...stylex.props(styles.inputWrapper)}>
-    <label htmlFor={id} {...stylex.props(styles.styledLabel)}>
-      {label}
-    </label>
-    <input
-      id={id}
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      {...stylex.props(styles.styledInput)}
-    />
-  </div>
-);
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  id: string;
+  error?: string;
+  className?: string;
+}
+
+export const FormInput: React.FC<FormInputProps> = ({ label, id, error, className, ...props }) => {
+  return (
+    <div className={cn("w-full flex flex-col gap-2", className)}>
+      <label 
+        htmlFor={id} 
+        className="text-sm font-medium text-gray-400 sm:text-base"
+      >
+        {label}
+      </label>
+      
+      <input 
+        id={id} 
+        {...props} 
+        className={cn(
+          // Estilos base
+          'w-full rounded-lg bg-gray-700 border text-white transition-colors duration-200',
+          'px-4 py-3 text-base',
+          'placeholder:text-gray-400',
+
+          'focus:outline-none focus:ring-2 disabled:opacity-50 disabled:cursor-not-allowed',
+          'hover:border-blue-500',
+
+          error 
+            ? 'border-red-500 focus:border-red-500 focus:ring-red-500/50' 
+            : 'border-gray-600 focus:border-blue-500 focus:ring-blue-500/50',
+            
+        )} 
+      />
+
+      {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
+    </div>
+  );
+};
