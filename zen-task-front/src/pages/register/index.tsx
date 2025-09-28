@@ -61,7 +61,7 @@ export function RegisterPage() {
             )}
 
             <button type="submit" disabled={isPending} className="w-full bg-blue-600 text-white font-bold font-mono py-3 px-5 text-base border-none rounded-lg cursor-pointer transition-all duration-200 ease-in-out min-h-14 hover:bg-blue-700 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
-              {isPending ? 'Entrando...' : 'Entrar'}
+              {isPending ? 'Criando...' : 'Criar conta'}
             </button>
           </form>
 
