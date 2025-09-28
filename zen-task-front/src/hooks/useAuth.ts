@@ -9,23 +9,20 @@ export const useLogin = () => {
 
   return useMutation<AuthResponse, Error, LoginRequest>({
     mutationFn: authApi.login,
-    onSuccess: (data) => {
-      authService.setToken(data.token);
-      authService.setUser(data.user);
-      queryClient.setQueryData(QUERY_KEYS.USER, data.user);
-    },
-  });
-};
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.USER })
+    }
+  })
+
+}
 
 export const useRegister = () => {
   const queryClient = useQueryClient();
 
   return useMutation<AuthResponse, Error, RegisterRequest>({
     mutationFn: authApi.register,
-    onSuccess: (data) => {
-      authService.setToken(data.token);
-      authService.setUser(data.user);
-      queryClient.setQueryData(QUERY_KEYS.USER, data.user);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.USER })
     },
   });
 };
@@ -35,7 +32,7 @@ export const useLogout = () => {
 
   return useMutation({
     mutationFn: async () => {
-      authService.logout();
+      authService.useLogout();
     },
     onSuccess: () => {
       queryClient.clear();

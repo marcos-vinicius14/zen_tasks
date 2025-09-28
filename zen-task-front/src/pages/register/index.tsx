@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { FormInput } from '../../components/formInput'; 
-import { useLogin } from '../../hooks';
+import { useRegister } from '../../hooks';
 
 
-export function LoginPage() {
+export function RegisterPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const { mutate, isPending, isError, error } = useLogin();
+  const { mutate, isPending, isError, error } = useRegister();
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ username, password });
+    mutate({ username, password, email });
   };
 
   return (
@@ -25,8 +26,8 @@ export function LoginPage() {
         </header>
 
         <main className="relative bg-gray-800 rounded-xl shadow-lg p-6 w-full sm:p-8">
-          <h2 className="text-2xl font-bold text-center mb-6 font-sans sm:text-3xl">Login</h2>
-          <form className="flex flex-col gap-5 sm:gap-6" onSubmit={handleLogin}>
+          <h2 className="text-2xl font-bold text-center mb-6 font-sans sm:text-3xl">Crie sua conta</h2>
+          <form className="flex flex-col gap-5 sm:gap-6" onSubmit={handleRegister}>
             <FormInput
               id="username"
               type="text"
@@ -34,6 +35,14 @@ export function LoginPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Digite seu nome de usuário"
+            />
+            <FormInput
+              id="email"
+              type="email"
+              label="Seu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu email"
             />
             <FormInput
               id="password"
@@ -52,14 +61,14 @@ export function LoginPage() {
             )}
 
             <button type="submit" disabled={isPending} className="w-full bg-blue-600 text-white font-bold font-mono py-3 px-5 text-base border-none rounded-lg cursor-pointer transition-all duration-200 ease-in-out min-h-14 hover:bg-blue-700 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none">
-              {isPending ? 'Entrando...' : 'Entrar'}
+              {isPending ? 'Criando...' : 'Criar conta'}
             </button>
           </form>
 
           <p className="text-center text-gray-400 mt-6 font-mono text-sm sm:text-base">
-            Não tem uma conta?{' '}
-            <a href="/register" className="font-medium text-blue-500 no-underline hover:underline focus:outline-2 focus:outline-blue-500 focus:outline-offset-2 focus:rounded-sm">
-              Crie agora
+            Já tem uma conta?{' '}
+            <a href="/login" className="font-medium text-blue-500 no-underline hover:underline focus:outline-2 focus:outline-blue-500 focus:outline-offset-2 focus:rounded-sm">
+              Login
             </a>
           </p>
         </main>
