@@ -17,19 +17,26 @@ class ApiClient {
 
   private async request<T>(
     endpoint: string,
-    options: RequestInit = {}
+    options: RequestInit & { authRequired?: boolean } = {}
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
     const token = localStorage.getItem('authToken');
 
+    const { authRequired = true, ...restOptions } = options;
+
+    const headers = new Headers(restOptions.headers);
+    headers.set('Content-Type', 'application/json');   // Define um cabeçalho
+
+
+    if (token && authRequired) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+
     const config: RequestInit = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...options.headers,
-      },
-      ...options,
+      headers,
+      ...restOptions,
     };
+
 
     try {
       const response = await fetch(url, config);
@@ -55,10 +62,11 @@ class ApiClient {
     return this.request<T>(endpoint, { method: 'GET' });
   }
 
-  async post<T>(endpoint: string, data?: unknown): Promise<T> {
+  async post<T>(endpoint: string, data?: unknown,  options?: RequestInit & { authRequired?: boolean }): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'POST',
       body: data ? JSON.stringify(data) : undefined,
+      ...options
     });
   }
 

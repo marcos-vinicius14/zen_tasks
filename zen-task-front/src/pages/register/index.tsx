@@ -40,7 +40,7 @@ export function RegisterPage() {
               id="email"
               type="email"
               label="Seu email"
-              value={username}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Digite seu email"
             />

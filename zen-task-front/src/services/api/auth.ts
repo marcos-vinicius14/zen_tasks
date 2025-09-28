@@ -8,10 +8,10 @@ import { apiClient } from './client';
 
 export const authApi = {
   login: async (credentials: LoginRequest): Promise<AuthResponse> => {
-    return apiClient.post<AuthResponse>(API_ENDPOINTS.AUTH.LOGIN, credentials);
+    return apiClient.post<AuthResponse>(API_ENDPOINTS.AUTH.LOGIN, credentials, { authRequired: false });
   },
 
   register: async (userData: RegisterRequest): Promise<AuthResponse> => {
-    return apiClient.post<AuthResponse>(API_ENDPOINTS.AUTH.REGISTER, userData);
+    return apiClient.post<AuthResponse>(API_ENDPOINTS.AUTH.REGISTER, userData, { authRequired: false });
   },
 };
