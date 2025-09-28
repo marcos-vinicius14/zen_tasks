@@ -20,6 +20,6 @@ export const authApi = {
   },
 
   status: async(): Promise<void> => {
-    return apiClient.get(API_ENDPOINTS.AUTH.STATUS)
+    return apiClient.get(API_ENDPOINTS.AUTH.STATUS);
   }
 };
